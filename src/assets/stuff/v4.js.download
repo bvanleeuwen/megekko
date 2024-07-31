@@ -1,0 +1,678 @@
+var perpage=0;
+var fullzoek = false;
+var lastzoek='';
+
+var getAutocompleteZoek = new XMLHttpRequest();
+function search_autocomplete(zoekterm){
+
+      getAutocompleteZoek.abort();
+      if(fullzoek == false){
+            getAutocompleteZoek.onreadystatechange=function(){
+
+                  if(getAutocompleteZoek.readyState==4){
+                        document.getElementById('zoekresult').style.opacity = 1;
+                  }
+
+                  if (getAutocompleteZoek.readyState==4 && getAutocompleteZoek.status==200){
+                        output = getAutocompleteZoek.responseText;
+
+                        if(output == ''){
+                              prepareZoek(500, '');
+                        }else{
+                              document.getElementById("zoekresult").classList.add('autocomplete');
+                              document.getElementById("zoekresult").innerHTML = getAutocompleteZoek.responseText;
+                        }
+
+                  }
+            }
+            var url             = encodeURIComponent(pageuri);
+            var paramlist       = "zoekterm="+zoekterm+"&url="+url;
+            getAutocompleteZoek.open("POST","/scripts/elasticsearch/autocomplete/autocomplete.php",true);
+            getAutocompleteZoek.withCredentials = true;
+            getAutocompleteZoek.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            getAutocompleteZoek.send(paramlist);
+      }
+
+}
+
+function selectZoek(input){
+      input = input.replace(/\u2716/,'');
+      document.getElementById('searchFieldInputField').value = input;
+      document.getElementById("zoekresult").innerHTML = "<div class='zoekitem'>Bezig met zoeken...</div>";
+      prepareZoek(0, '');
+}
+
+var autocompleteTimer = setTimeout(function(){},0);
+function prepare_autocomplete(mode){
+      clearTimeout(autocompleteTimer);
+      autocompleteTimer = setTimeout(function(){
+            var input = document.getElementById('searchFieldInputField').value;
+            input = input.trim();
+            input = encodeURIComponent(input);
+
+            if(fullzoek == false){
+                  if(input == ''){
+                        overlay('hide');
+                        document.getElementById("zoekresult").style.display='none';
+                        document.getElementById("zoekresult").classList.remove('autocomplete');
+                        document.getElementById("zoekresult").innerHTML = '';
+                  }else if(mode=='key'){
+                        overlay('show');
+                        document.getElementById("zoekresult").style.display='block';
+                        search_autocomplete(input);
+                  }else if(mode=='click'){
+                        if(document.getElementById("zoekresult").style.display == 'none'){
+                              overlay('show');
+                              document.getElementById("zoekresult").style.display='block';
+                              search_autocomplete(input);
+                        }
+                  }
+            }
+      },250);
+}
+
+function prepareZoek(timeout, nav){
+
+      clearTimeout(zoektimer);
+      getAutocompleteZoek.abort();
+      zoektimer=setTimeout(function(){
+            input = document.getElementById('searchFieldInputField').value;
+            input = encodeURIComponent(input);
+            zoekfilter='';
+
+            var dozoek=true;
+            if(lastsearch!=input && nav!='cache'){
+                  zoekcache=0;
+                  document.getElementById("zoekresult").innerHTML = "<div class='zoekitem'>Bezig met zoeken...</div>";
+            }else{
+                  zoekcache=1;
+                  if(nav=='next'){
+                        zoekpage++;
+                  }else if(nav=='prev'){
+                        zoekpage--;
+                  }else if(nav=='force'){
+                        document.getElementById('searchFieldInputField').blur();
+                        zoekcache=0;
+                        perpage=0;
+                  }else if(nav=='cache'){
+                        zoekcache=2;
+                  }else if(nav.substring(0, 6)=='filter'){
+                        zoekfilter=nav.substring(7);
+                  }else{
+                        dozoek=false;
+                  }
+            }
+
+            // if(document.getElementById('searchFieldInputField')){
+            //       if(lastzoek == document.getElementById('searchFieldInputField').value){
+            //             dozoek=false;
+            //       }
+            // }
+
+            if(zoekactief==true){
+                  dozoek=false;
+            }
+
+            if(dozoek==true){
+                  if(input.length>=2){
+                        document.getElementById("zoekresult").classList.remove('autocomplete');
+                        overlay('show');
+                        document.getElementById("zoekresult").style.display='block';
+                        zoekactief=true;
+
+                        zoek('zoek', input, nav);
+
+                        document.getElementById('searchFieldIconImg').style.opacity=0.3;
+                        var x = document.getElementsByName("zoekitem");
+                        for (i = 0; i < x.length; i++) {
+                              x[i].style.opacity=0.3;
+                        }
+                        var x = document.getElementsByName("zoekcatitem");
+                        for (i = 0; i < x.length; i++) {
+                              x[i].style.opacity=0.3;
+                        }
+                        var x = document.getElementsByName("filtercheck");
+                        for (i = 0; i < x.length; i++) {
+                              x[i].style.opacity=0.3;
+                        }
+                  }else{
+                        zoekcache=0;
+                        //overlay('hide');
+                  }
+            }else{
+                  if(input.length>=3){
+                        overlay('show');
+                        document.getElementById("zoekresult").style.display='block';
+                  }else{
+                        zoekcache=0;
+                        //overlay('hide');
+                  }
+            }
+
+      }, timeout);
+      
+}
+
+function zoekshowmore(filterid, aantal){
+      var x = document.getElementsByName("ismorezoek"+filterid);
+      var showmode='';
+      for (var i=0; i<x.length; i++) {
+            if(x[i].className.indexOf('hidden') > -1){
+                  x[i].className = "option";
+                  showmode='show';
+            }else{
+                  x[i].className = "option hidden";
+                  showmode='hide';
+            }
+            if(showmode=='show'){
+                  document.getElementById('showmorezoek'+filterid).innerHTML="Minder <span class='largefont'>&#9652;</span>";
+            }else{
+                  document.getElementById('showmorezoek'+filterid).innerHTML="Meer ("+aantal+") <span class='largefont'>&#9662;</span>";
+            }
+      }
+      var hoogte=document.getElementById('filteropties'+filterid).clientHeight;
+      hoogte=hoogte+3;
+      document.getElementById('filteroptiesheight'+filterid).style.maxHeight=hoogte+'px';
+      document.getElementById('filteroptiesheight'+filterid).style.height=hoogte+'px';
+}
+
+
+function zoek(calltype, data, pagemutate){
+
+      clearTimeout(globalTimer);
+      if(calltype!='callback'){
+            lastzoek=data;
+            fullzoek = true;
+
+            getAutocompleteZoek.abort();
+
+            var rand=createrandom();
+            if(document.getElementById('navidfilter')){
+                  navidfilter=document.getElementById('navidfilter').value;
+            }
+            navidfilter=0;
+
+            var returnfunc='zoek';
+            var zoekcachetemp = zoekcache;
+            if(calltype=='prodList'){
+                  returnfunc='prodListUpdate';
+                  zoekcachetemp = 3;
+            }
+            if(calltype=='merkList'){
+                  returnfunc='prodListUpdate';
+                  zoekcachetemp = 4;
+            }
+
+            var resultaat=globalcomm('/pages/zoeken/v4/v4.php', 'zoek='+data+'&cache='+zoekcachetemp+"&pageuri="+pageuri+'&filter='+zoekfilter+'&pagemutate='+pagemutate, rand, 25000, returnfunc);
+
+      }else if(calltype=='callback'){
+
+            document.getElementById("zoekresult").classList.remove('autocomplete');
+           
+            var currzoek      = document.getElementById('searchFieldInputField').value;
+            currzoek          = encodeURIComponent(currzoek);
+
+            if(lastzoek!=currzoek){
+                  zoek('', currzoek);
+            }else{
+
+                  fullzoek = false;
+
+                  if(data==''){
+
+                  }else{
+                        // console.log(data);
+                        lastsearch  = document.getElementById('searchFieldInputField').value;
+                        lastsearch  = encodeURIComponent(lastsearch);
+
+                        zoekactief              = false;
+                        var zoekresult          = '';
+                        var aantal              = data.aantal;
+                        var pagnext             = data.pagnext;
+                        var pagprev             = data.pagprev;
+                        var paginfo             = data.paginfo;
+                        var catinfo             = data.zoekcat;
+                        var groepselect         = data.groepselect;
+                        var updatefilters       = data.updatefilters;
+                        zoekpage                = data.pagenow;
+
+                        var merklist            = data.merklist;
+                        var merklist_order      = data.merklist_order;
+                        var catmain             = data.catmain;
+                        var catmain_order       = data.catmain_order;
+                        var catsub              = data.catsub;
+                        var catsub_order        = data.catsub_order;
+                        var catfilter_actief    = data.catfilter_actief;
+
+                        perpage                 = data.perpage;
+
+                        var zoek_filter         = data.zoek_filter;
+                        var filter_cache        = '';
+
+                        data                    = data.zoek;
+
+                        if(aantal>0){
+                              if(pagprev==1){
+                                    pagprev="<div class='zoeknav active' onClick='prepareZoek(50,\"prev\")'><img class='nav' src='/templates/basic/images/left-icon.png' alt='page left'></div>";
+                              }else{
+                                    pagprev="<div class='zoeknav'><img class='nav isdisabled' src='/templates/basic/images/left-icon-grey.png' alt='page left'></div>";
+                              }
+                              if(pagnext==1){
+                                    pagnext="<div class='zoeknav active' onClick='prepareZoek(50,\"next\")'><img class='nav' src='/templates/basic/images/right-icon.png' alt='page right'></div>";
+                              }else{
+                                    pagnext="<div class='zoeknav'><img class='nav isdisabled' src='/templates/basic/images/right-icon-grey.png' alt='page right'></div>";
+                              }
+                        }else{
+                              pagprev='';
+                              pagnext='';
+                        }
+
+                        zoekresult+="<div class='zoektitelbalk'>"+groepselect+""+pagprev+" <div class='paginfo'>"+paginfo+"</div> "+pagnext+"</div><br>";
+
+                        if(catinfo != null){
+                              var sortinfo=catinfo.sortinfo.split('|');
+                              var gevondentotal=0;
+                              var gevonden=0;
+                              if(sortinfo!=''){
+                                    for(l in sortinfo){
+                                          sortpart=sortinfo[l].split('-');
+                                          i=sortpart[0];
+                                          c=sortpart[1];
+                                          o=sortpart[2];
+
+                                          catobjectarr=catinfo[i][c][o];
+                                          for(ob in catobjectarr){
+                                                catobject=catobjectarr[ob];
+
+                                                if(gevonden==0){
+                                                      zoekresult+="<div class='koptitel margintop5'>Gevonden productgroepen</div>";
+                                                      zoekresult+="<div class='lineNoMargin'></div>";
+
+                                                      zoekresult+="<div class='zoekcatcontainer'>";
+                                                      gevonden=1;
+                                                      gevondentotal=1;
+                                                }
+
+                                                zoekresult+="<div class='zoekcat25' name='zoekcatitem'>";
+                                                zoekresult+="<div class='zoekcat' title='"+catobject.naam+"'>";
+                                                      zoekresult+="<a href='/"+catobject.urlv2+"?c_o="+(parseInt(l)+1)+"'>";
+
+                                                      zoekresult+="<img class='img' alt='"+catobject.naam+"' src='"+catobject.img+"'>";
+                                                      zoekresult+="<div class='titel'>"+catobject.naam+"</div>";
+
+                                                      zoekresult+="</a>";
+                                                zoekresult+="</div>";
+                                                zoekresult+="</div>";
+                                          }
+                                    }
+                              }
+
+                              zoekresult+="</div>";
+                              if(gevonden==1){
+                                    zoekresult+="<br><br>";
+                              }
+                        }
+
+                        // ZOEKFUNCTIE NIEUW
+                        zoekresult+="<div class='koptitel margintop5'>Gevonden producten</div>";
+                        zoekresult+="<div class='lineNoMargin'></div>";
+
+                        zoekresult+='<div id="allfilteractief">';
+                        for(mainid in catfilter_actief){
+                              var filter=catfilter_actief[mainid];
+                              zoekresult+='<div class="filteractief" onclick="prepareZoek(0, \'filter_kill_'+mainid+'\')"><div class="naam">'+filter['naam']+' ('+filter['aantal']+')</div><div class="sluiten">&#x2716;&#xFE0E;</div></div>';
+                        }
+                        zoekresult+='</div>';
+
+                        if(document.getElementById('zoek_filter') && document.getElementById('zoek_filter').innerHTML!='' && zoekcache!=0){
+                              filter_cache = document.getElementById('zoek_filter').innerHTML;
+                        }
+
+                        zoekresult+="<div class='zoek_results_contailer' style='display:block; position:relative; box-sizing:border-box;'>";
+                              zoekresult+="<div class='menu'>";
+                                    zoekresult+="<div class='filter' id='zoek_filter'>";
+
+                                          if(filter_cache == ''){
+
+                                                if(aantal>0){
+
+                                                      zoekresult+='<div class="title"><input type="checkbox" id="checkzoekmerk-0" name="filtercheck" onchange="prepareZoek(0, \'filter_merk_0\')"> <label class="label_aantal" id="labelzoek_merk-0" for="checkzoekmerk-0">Merk</label></div>';
+                                                      zoekresult+='<div id="filteroptiesheightmerk" class="filteroptiescontainer">';
+                                                            zoekresult+='<div id="filteroptiesmerk">';
+                                                                  merklist_order=merklist_order.split(',');
+
+                                                                  // MERKEN FILTER
+                                                                  var counter=1;
+                                                                  var hidden='';
+                                                                  var ismore='';
+                                                                  for(i in merklist_order){
+                                                                        merkid = merklist_order[i];
+                                                                        merkitem = merklist[merkid];
+
+                                                                        if(merkitem){
+
+                                                                              if(counter>5){
+                                                                                    hidden=' hidden';
+                                                                                    ismore=" name='ismorezoekmerk'";
+                                                                              }
+
+                                                                              var gray='';
+                                                                              if(merkitem['aantal']!='undefined'){
+                                                                                    if(merkitem['aantal']==0){
+                                                                                          gray=' gray';
+                                                                                    }
+                                                                              }
+
+                                                                              zoekresult+='<div class="option'+hidden+'"'+ismore+'><input type="checkbox" id="checkzoekmerk-'+merkid+'" name="filtercheck" onchange="prepareZoek(0, \'filter_merk_'+merkid+'\')"> <label class="label_aantal'+gray+'" id="labelzoek_merk-'+merkid+'" for="checkzoekmerk-'+merkid+'">'+merkitem['naam']+'  (<span id="aantalzoek_merk-'+merkid+'">'+merkitem['aantal']+'</span>)</label></div>';
+                                                                              counter++;
+                                                                        }
+                                                                  }
+
+                                                                  if(hidden!=''){
+                                                                        zoekresult+='<div class="option more" onclick="zoekshowmore(\'merk\', '+(counter-6)+')" id="showmorezoekmerk">Meer ('+(counter-6)+') <span class="largefont">▾</span></div>';
+                                                                  }
+
+                                                            zoekresult+="</div>";
+                                                      zoekresult+='</div>';
+                                                      zoekresult+="<div class='line'></div>";
+
+                                                      if(catmain_order!=''){
+                                                            // PRODUCTGROEP FILTER
+                                                            catmain_order=catmain_order.split(',');
+                                                            for(i in catmain_order){
+
+                                                                  var mainid = catmain_order[i];
+                                                                  var aantal = catmain[mainid]['aantal'];
+                                                                  var naam = catmain[mainid]['naam'];
+
+                                                                  var zoek_cats='';
+                                                                  if(catsub_order[mainid]){
+
+                                                                        var catsub_ord=catsub_order[mainid].split(',');
+
+                                                                        var counter=1;
+                                                                        var hidden='';
+                                                                        var ismore='';
+                                                                        for(s in catsub_ord){
+                                                                              var subid=catsub_ord[s];
+                                                                              if(catsub[mainid][subid]){
+
+                                                                                    if(counter>5){
+                                                                                          hidden=' hidden';
+                                                                                          ismore=" name='ismorezoek"+mainid+"'";
+                                                                                    }
+
+                                                                                    catitem = catsub[mainid][subid];
+
+                                                                                    var gray='';
+                                                                                    if(catitem['aantal']==0){
+                                                                                          gray=' gray';
+                                                                                    }
+
+                                                                                    if(catitem['naam']!='undefined'){
+                                                                                          zoek_cats+='<div class="option'+hidden+'"'+ismore+'><input type="checkbox" id="checkzoek'+mainid+'-'+subid+'" name="filtercheck" onchange="prepareZoek(0, \'filter_'+mainid+'_'+subid+'\')"> <label class="label_aantal'+gray+'" id="labelzoek_'+mainid+'-'+subid+'" for="checkzoek'+mainid+'-'+subid+'">'+catitem['naam']+'  (<span id="aantalzoek_'+mainid+'-'+subid+'">'+catitem['aantal']+'</span>)</label></div>';
+                                                                                    }
+                                                                                    counter++;
+                                                                              }
+                                                                        }
+                                                                        if(hidden!=''){
+                                                                              zoek_cats+='<div class="option more" onclick="zoekshowmore(\''+mainid+'\', '+(counter-6)+')" id="showmorezoek'+mainid+'">Meer ('+(counter-6)+') <span class="largefont">▾</span></div>';
+                                                                        }
+
+                                                                  }
+
+                                                                  if(zoek_cats!=''){
+
+                                                                        zoekresult+="<div class='title'>"+'<input type="checkbox" id="checkzoek'+mainid+'-0" name="filtercheck" onchange="prepareZoek(0, \'filter_'+mainid+'_0\')"> <label for="checkzoek'+mainid+'-0">'+naam+"</label></div>";
+                                                                        zoekresult+='<div id="filteroptiesheight'+mainid+'" class="filteroptiescontainer">';
+                                                                              zoekresult+='<div id="filteropties'+mainid+'">';
+                                                                                    zoekresult+=zoek_cats;
+                                                                              zoekresult+='</div>';
+                                                                        zoekresult+='</div>';
+                                                                        zoekresult+="<div class='line'></div>";
+                                                                  }
+                                                            }
+                                                      }
+                                                }
+                                          }
+
+                                    zoekresult+="</div>";
+                              zoekresult+="</div>";
+
+                              zoekresult+="<div class='zoek_items_container' style='display:inline-block; width: 780px;'>";
+                                    var gevonden=0;
+                                    for(i in data){
+                                          gevonden=1;
+                                          gevondentotal=1;
+
+                                          zoekresult+="<div class='zoekitem' name='zoekitem'>";
+                                                zoekresult+="<div class='img'><a href='"+data[i].link+"'><img src='/productimg/"+data[i].prodnum+"/mini/1_"+data[i].safename+".jpg' alt='"+data[i].safename+"'></a></div>";
+
+                                                zoekresult+="<div class='prodinfo'>";
+                                                      zoekresult+="<a href='"+data[i].link+"' class='naam'>"+data[i].prodname+"</a>";
+                                                      if(data[i]['preorder']!=2){
+                                                            zoekresult+="<div class='voorraad'>"+data[i].levertijdtext+"</div>";
+                                                      }
+                                                      zoekresult+="<div class='crumbs'>";
+
+                                                            var first=true;
+                                                            for(b in data[i].breadcrumbs.breadcrumbsdata){
+                                                                  if(first==true){
+                                                                        first=false;
+                                                                  }else{
+                                                                        zoekresult+=" <span class='grijs'>&#9656;</span> ";
+                                                                  }
+                                                                  zoekresult+="<a href='"+data[i].breadcrumbs.breadcrumbsdata[b].url+"'><div class='breadcrumbs'>"+data[i].breadcrumbs.breadcrumbsdata[b].naam+"</div></a>";
+                                                            }
+
+                                                      zoekresult+="</div>";
+                                                zoekresult+="</div>";
+
+
+
+                                                var staffel = '';
+                                                if(data[i]['staffel'] == 1){
+                                                      staffel=' staffel';
+                                                }
+                                                if(data[i]['preorder']==2 && Math.round(data[i].price) == 99999){
+                                                      if(data[i].verwacht == '01-01-1970' || data[i].verwacht == 0 || data[i].verwacht == ''){
+                                                            zoekresult+=`<div class='pricerspace priceBlock'>`;
+                                                            zoekresult+=`<div class='pricer teaser'>`;
+                                                                  zoekresult+=`<div class='pricecontainer teaser'>PRIJS IS NOG NIET BEKEND</div>`;
+                                                            zoekresult+=`</div>`;
+                                                            zoekresult+=`<div class='pricer teaserdate'>LEVERTIJD<div class='date'>NOG NIET BEKEND</div></div>`;
+                                                            zoekresult+=`</div>`;
+                                                      }else{
+                                                            zoekresult+=`<div class='pricerspace priceBlock'>`;
+                                                            zoekresult+=`<div class='pricer teaser'>`;
+                                                                  zoekresult+=`<div class='pricecontainer teaser'>PRIJS IS NOG NIET BEKEND</div>`;
+                                                            zoekresult+=`</div>`;
+                                                            zoekresult+=`<div class='pricer teaserdate'>TE BESTELLEN<div class='date'>VANAF ${data[i]['verwacht']}</div></div>`;
+                                                            zoekresult+=`</div>`;
+                                                      }
+                                                }else if(data[i]['preorder']==2){
+
+                                                      zoekresult+=`<div class='pricerspace priceBlock'>`;
+                                                            var pricesplit=data[i].price.split('.');
+                                                            var price='';
+                                                            if(pricesplit[1]==0){
+                                                                  price="<div class='euro'>"+pricesplit[0]+"<span class='pricecomma'>,</span>-</div>";
+                                                            }else{
+                                                                  price="<div class='euro'>"+pricesplit[0]+"<span class='pricecomma'>,</span></div><div class='cent'>"+pricesplit[1]+"</div>";
+                                                            }
+                                                            zoekresult+="<div class='pricer' style='margin-right: 5px;'>";
+                                                                  zoekresult+="<a href='"+data[i].link+"'><div class='pricecontainer'>"+price.replace('.',',')+"</div></a>";
+                                                                  if(data[i].promotekst && data[i].promotekst!=''){
+                                                                        zoekresult+='<div style="display:block;text-align:right;line-height:14px;position:relative"><div style="display:inline-block;background-color:#CE0004;color:#FFF;padding:2px 3px 1px 3px;text-align:center;font-size: 10px;line-height: 14px; position:absolute; right:0px; white-space: nowrap">'+data[i].promotekst+'</div></div>';
+                                                                  }
+                                                            zoekresult+="</div>";
+
+                                                            zoekresult+=`<div class='pricer teaserdate'>`;
+                                                            if(data[i].verwacht == '01-01-1970' || data[i].verwacht == 0 || data[i].verwacht == ''){
+                                                                  zoekresult+=`LEVERTIJD<div class='date'>NOG NIET BEKEND</div>`;
+                                                            }else{
+                                                                  zoekresult+=`TE BESTELLEN<div class='date'>VANAF ${data[i]['verwacht']}</div>`;
+                                                            }
+                                                            zoekresult+="</div>";
+                                                      zoekresult+=`</div>`;
+                                                }else{
+                                                      zoekresult+="<div class='priceBlock"+staffel+"'>";
+                                                            var adviesprijs='';
+                                                            if(parseFloat(data[i].adviesprijs)>parseFloat(data[i].price)){
+                                                                  if(data[i].adviesprijs.toString().indexOf('.')>-1){
+                                                                        adviesprijs=parseFloat(data[i].adviesprijs).toFixed(2).replace('.',',');
+                                                                  }else{
+                                                                        adviesprijs=parseFloat(data[i].adviesprijs).toString()+',00';
+                                                                  }
+                                                                  zoekresult+="<div class='vanvoor'><div class='prijs'>€&nbsp;"+adviesprijs+"</div><div class='line'></div></div>";
+                                                            }
+
+                                                            var pricesplit=data[i].price.split('.');
+                                                            var price='';
+                                                            if(pricesplit[1]==0){
+                                                                  price="<div class='euro'>"+pricesplit[0]+"<span class='pricecomma'>,</span>-</div>";
+                                                            }else{
+                                                                  price="<div class='euro'>"+pricesplit[0]+"<span class='pricecomma'>,</span></div><div class='cent'>"+pricesplit[1]+"</div>";
+                                                            }
+                                                            zoekresult+="<div class='pricer'>";
+                                                                  zoekresult+="<a href='"+data[i].link+"'><div class='pricecontainer'>"+price.replace('.',',')+"</div></a>";
+                                                                  if(data[i].promotekst && data[i].promotekst!=''){
+                                                                        zoekresult+='<div style="display:block;text-align:right;line-height:14px;position:relative"><div style="display:inline-block;background-color:#CE0004;color:#FFF;padding:2px 3px 1px 3px;text-align:center;font-size: 10px;line-height: 14px; position:absolute; right:0px; white-space: nowrap">'+data[i].promotekst+'</div></div>';
+                                                                  }
+                                                            zoekresult+="</div>";
+
+                                                            if(data[i].opisop==1 && data[i].voorraad<=0){
+                                                                  zoekresult+="<div class='shopbutton' style='background-color:#CCCCCC; cursor:default;'></div>";
+                                                            }else{
+                                                                  zoekresult+="<a href='/winkelmand/add/"+data[i].prodnum+"/"+data[i].navid+"/'>";
+                                                                        zoekresult+="<div class='shopbutton'></div>";
+                                                                  zoekresult+="</a>";
+                                                            }
+
+                                                            if(data[i]['staffel'] == 1){
+                                                                  zoekresult+="<a href='"+data[i].link+"/#staffel'>";
+                                                                        zoekresult+="<div class='staffelinfo'><div class='procent'>%</div><div class='text'>staffelkorting mogelijk</div></div>";
+                                                                  zoekresult+="</a>";
+                                                            }
+
+                                                      zoekresult+="</div>";
+                                                }
+
+                                          zoekresult+="</div>";
+                                          zoekresult+="<div class='lineNoMargin'></div>";
+                                    }
+
+                                    if(gevonden==0){
+                                          zoekresult+="<div class='zoekitem' name='zoekitem'>";
+                                                zoekresult+="<div class='zoekadvies'>We hebben helaas geen artikelen gevonden die aan jouw zoekopdracht voldoen.</div>";
+                                          zoekresult+="</div>";
+                                    }
+                              zoekresult+="</div>";
+                        zoekresult+="</div>"; // Container
+
+                        document.getElementById('searchFieldIconImg').style.opacity=1;
+                        var x = document.getElementsByName("zoekitem");
+                        for (i = 0; i < x.length; i++) {
+                              x[i].style.opacity=1;
+                        }
+
+                        if(gevondentotal==0){
+                              if(navidfilter!=0){
+                                    zoekresult+="<div class='zoekitem' name='zoekitem' onClick='zoekfull()'>";
+                                          zoekresult+="<div class='zoekarrow'>&#x21b7;</div><div class='zoekadvies'>Er zijn geen resultaten voor jouw zoekopdracht gevonden.<br><u>Wil je misschien binnen de gehele website zoeken?</u></div>";
+                                    zoekresult+="</div>";
+                              }else{
+
+                              }
+                        }else{
+                              zoekresult+="<div class='zoektitelbalk'>"+groepselect+""+pagprev+" <div class='paginfo'>"+paginfo+"</div> "+pagnext+"</div>";
+                        }
+
+                        document.getElementById("zoekresult").innerHTML=zoekresult;
+
+                        if(filter_cache != ''){
+                              document.getElementById('zoek_filter').innerHTML=filter_cache;
+
+                              for(i in merklist){
+                                    var aantal=merklist[i]['aantal'];
+                                    if(document.getElementById('aantalzoek_merk-'+i)){
+                                          document.getElementById('aantalzoek_merk-'+i).innerHTML=aantal;
+                                          if(aantal==0){
+                                                document.getElementById('labelzoek_merk-'+i).classList.add('gray');
+                                          }else{
+                                                document.getElementById('labelzoek_merk-'+i).classList.remove('gray');
+                                          }
+                                    }
+                              }
+
+                              for(mainid in catsub){
+                                    for(subid in catsub[mainid]){
+                                          var aantal=0;
+                                          if(catsub[mainid][subid]['aantal']){
+                                                aantal=catsub[mainid][subid]['aantal'];
+                                          }
+                                          if(document.getElementById('aantalzoek_'+mainid+'-'+subid)){
+                                                document.getElementById('aantalzoek_'+mainid+'-'+subid).innerHTML=aantal;
+
+                                                if(aantal==0){
+                                                      document.getElementById('labelzoek_'+mainid+'-'+subid).classList.add('gray');
+                                                }else{
+                                                      document.getElementById('labelzoek_'+mainid+'-'+subid).classList.remove('gray');
+                                                }
+                                          }
+                                    }
+                              }
+
+                        }
+
+                        var x = document.getElementsByName("filtercheck");
+                        for (i = 0; i < x.length; i++) {
+                              x[i].style.opacity=1;
+                        }
+
+                        for(i in zoek_filter['merk']){
+                              if(document.getElementById('checkzoekmerk-'+i)){
+                                    document.getElementById('checkzoekmerk-'+i).checked=true;
+                              }
+                        }
+
+                        for(m in zoek_filter['groep']){
+                              for(s in zoek_filter['groep'][m]){
+                                    if(document.getElementById('checkzoek'+m+'-'+s)){
+                                          document.getElementById('checkzoek'+m+'-'+s).checked=true;
+                                    }
+                              }
+                        }
+
+                  }
+            }
+      }
+}
+
+function zoekfull(){
+      if(document.getElementById('navidfilter')){
+            document.getElementById('navidfilter').value=0;
+      }
+      if(document.getElementById('zoekresult').classList.contains('autocomplete')){
+            document.getElementById('zoekresult').classList.remove('autocomplete');
+            document.getElementById("zoekresult").innerHTML = "<div class='zoekitem'>Bezig met zoeken...</div>";
+      }
+      prepareZoek(10, "force");
+}
+
+function checkZoekBack(calltype, data){
+      if(calltype=='check'){
+            var url=encodeURIComponent(pageuri);
+            globalcomm('/pages/zoeken/v4/checkzoekback.php', 'url='+url, '', 6000, 'checkZoekBack');
+      }else if(calltype=='callback'){
+            if(data['search']!=''){
+                  document.getElementById('searchFieldInputField').value=data['search'];
+                  zoekpage=data['page'];
+                  if(data['searchtype'] && data['searchtype'] == 'autocomplete'){
+                        prepare_autocomplete("key");
+                  }else{
+                        prepareZoek(100, "cache");
+                  }
+            }
+      }
+}

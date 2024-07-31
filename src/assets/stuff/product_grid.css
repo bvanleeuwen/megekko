@@ -1,0 +1,71 @@
+.prdContainer.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 36px);
+    grid-template-rows: auto;
+    grid-template-areas:
+        "prdHeader prdHeader prdHeader prdHeader prdHeader"
+        "prdImg prdImg prdImg prdImg prdImg"
+        "prdFooter prdFooter prdFooter prdFooter prdFooter"
+        "prdFooter prdFooter prdFooter prdFooter prdFooter"
+        "prdFooter prdFooter prdFooter prdFooter prdFooter";
+    justify-content: center;
+    width: 200px;
+    border-bottom: 1px solid var(--colorLightGray);  
+    border-right: 1px solid var(--colorLightGray);
+    box-sizing: border-box; 
+
+    height: 378px;
+}
+
+.prdContainer.grid .prdHeader .prdTitle {
+    max-height: 36px;
+    font-size: 12px;
+    font-weight: 700;
+    overflow: hidden;
+    line-height: 18px;
+}
+
+/* FOOTER */
+.prdContainer.grid .prdFooter {
+    grid-area: prdFooter;
+    display: grid;
+    grid-template-columns: repeat(5, 36px);
+    grid-template-rows: 90px auto;
+    grid-template-areas: 
+        "prdEnergielabel prdEnergielabel prdPricer prdPricer prdPricer"
+        "prdVergelijk prdVergelijk prdVergelijk prdVergelijk prdWishlist";
+    margin-top: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.prdContainer.grid .prdFooter .prdEnergielabel { 
+    align-self: flex-end;
+}
+
+.prdContainer.grid .prdFooter .prdEnergielabel > div {
+    justify-content: flex-start;
+}
+
+
+/* pricer css */
+
+.prdContainer.grid .prdFooter .prdVergelijk { 
+    width: auto;
+}
+
+.prdContainer.grid .prdFooter .prdWishlist {
+    grid-area: prdWishlist;
+    justify-self: center;
+    align-self: center;
+}
+
+.prdContainer.grid .prsContainer{ 
+    grid-template-columns: repeat(4,auto);
+    /* line-height: normal; */
+    column-gap: 0px;
+}
+
+.prdContainer.grid .prdPricer.pricerFooter{
+    align-self: flex-end;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "megekko",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.11.0",
+    "oh-vue-icons": "^1.0.0-rc3",
+    "vue": "^3.4.29"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "sass": "^1.77.6",
+    "vite": "^5.3.1"
+  }
+}

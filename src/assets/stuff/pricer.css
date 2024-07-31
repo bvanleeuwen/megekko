@@ -1,0 +1,212 @@
+.prsContainer{
+    display:                grid;
+    grid-template-columns:  40px 40px 40px 40px;
+    grid-template-rows:     max-content 40px max-content max-content;
+    column-gap:             5px;
+    grid-template-areas:    
+        "vanvoor vanvoor vanvoor"
+        "price price price"
+        "staffelkorting staffelkorting staffelkorting"
+        "promotekst promotekst promotekst";
+}
+
+    .prsContainer.prsBuy{
+        grid-template-areas:    
+            "vanvoor vanvoor vanvoor ."
+            "price price price wishlist"
+            "staffelkorting staffelkorting staffelkorting staffelkorting"
+            "promotekst promotekst promotekst .";
+    }
+
+    .prsContainer.prsTeaser{
+        grid-template-columns:  160px;
+        grid-template-rows:     max-content 40px max-content;
+        column-gap:             0px;
+        grid-template-areas:    
+            "vanvoor"
+            "price"
+            "promotekst";
+    }
+
+.prsContainer.prsHorizontal{
+    grid-template-columns:  40px 40px 40px 40px 40px 40px;
+    grid-template-rows:     40px max-content;
+    grid-template-areas:    
+        "vanvoor vanvoor price price price"
+        ". . staffelkorting staffelkorting staffelkorting"
+        ". . promotekst promotekst promotekst";
+}
+
+    .prsContainer.prsHorizontal.prsBuy{
+        grid-template-areas:    
+            "vanvoor vanvoor price price price wishlist"
+            ". . staffelkorting staffelkorting staffelkorting staffelkorting"
+            ". . promotekst promotekst promotekst .";
+    }
+
+    .prsContainer.prsHorizontal.prsTeaser{
+        grid-template-columns:  40px 40px 40px 40px 40px 40px;;
+        grid-template-rows:     max-content 40px;
+        column-gap:             5px;
+        grid-template-areas:    
+            "vanvoor vanvoor vanvoor . . ."
+            "price price price promotekst promotekst promotekst";
+    }
+
+    .prsContainer .prsVanvoor{
+        grid-area:          vanvoor;
+        display:            block;
+        width:              fit-content;
+        min-width:          80px;
+        padding:            0px 5px 0px 5px;
+        position:           relative;
+        font-size:          18px;
+        color:              var(--colorGray);
+        text-align:         center;
+    }
+
+        .prsContainer.prsBuy.prsHorizontal .prsVanvoor{
+            margin:             9px 0px 9px 0px;
+            width:              100%;
+            padding:            0;
+        }
+        .prsContainer .prsVanvoor .PriceLine{
+            display:            block;
+            width:              100%;
+            height:             100%;
+            position:           absolute;
+            top:                10px;
+            left:               2px;
+            border-bottom:      1px solid var(--colorDarkGray);
+            -webkit-transform:  rotate(170deg);
+            transform:          rotate(170deg);
+        }
+
+    .prsContainer .prsPrice{
+        grid-area:      price;
+		display:        block;
+        position:       relative;
+		text-align:     center;
+		background:     linear-gradient(135deg, var(--colorDarkGreen) 0%, var(--colorDarkGreen) 89%, var(--colorGreen) 89%, var(--colorGreen) 100%);
+		font-family:    'Roboto', sans-serif;
+		font-weight:    500;
+		color:          var(--colorWhite);
+        white-space:    nowrap;
+    }
+        .prsContainer .prsPrice .prsEuro{
+            display:        inline-block;
+            font-size:      32px;
+            white-space:    nowrap;
+        }
+        .prsContainer .prsPrice .prsCent{
+            display:        inline-block;
+            position:       relative;
+            top:            -10px;
+            left:           -3px;
+            font-size:      18px;
+            white-space:    nowrap;
+        }
+        .prsContainer .prsPrice .prsTeaser{
+            font-size:      15px;
+            line-height:    15px;
+            padding:        6px 0px 0px 0px;
+            font-family:    'Roboto', sans-serif;
+            font-weight:    500;
+        }
+
+    .prsContainer .prsWishlist{
+        grid-area:          wishlist;
+        background-color:   var(--colorBlue);
+        background-image:   url('/templates/basic/images/icoon_winkelwagen.png');
+        background-position:center center;
+        background-repeat:  no-repeat;
+    }
+        .prsContainer .prsWishlist.prsUitverkocht{
+            background-color: var(--colorDarkGray);
+        }
+
+    .prsContainer .prsPromo{
+        grid-area:          promotekst;
+        background-color:   var(--colorRed);
+        color:              var(--colorWhite);
+        font-family:        'Roboto', sans-serif;
+        text-align:         center;
+        padding:            0px 3px 0px 3px;
+        line-height:        20px;
+        font-size:          11px;
+    }
+    .prsContainer>.prsTeaser{
+        grid-area:          promotekst;
+        background-color:   var(--colorBlue);
+        color:              var(--colorWhite);
+        font-family:        'Roboto', sans-serif;
+        text-align:         center;
+        text-transform:     uppercase;
+        padding:            6px 5px 6px 5px;
+        font-size:          15px;
+        font-weight:        500;
+        line-height:        15px;
+        min-width:          max-content;
+    }
+
+    .prsContainer .prsStaffel{
+        grid-area:              staffelkorting;
+        margin-top:             5px;
+        display:                grid;
+        grid-template-columns:  auto max-content;
+        height:                 20px;
+        border:                 1px solid var(--colorBlack);
+        cursor:                 pointer;
+    }
+        .prsContainer .prsStaffel>div:nth-child(1){
+            text-align:         center;
+            font-size:          14px;
+            line-height:        20px;
+            color:              var(--colorGreen);
+            font-weight:        bolder;
+        }
+        .prsContainer .prsStaffel>div:nth-child(2){
+            text-align:         center;
+            font-size:          10px;
+            line-height:        20px;
+            padding:            0px 10px 0px 0px;
+            white-space:        nowrap;
+            font-family:        'Roboto', sans-serif;
+            text-transform:     uppercase;
+            font-weight:        bolder;
+        }
+
+/* MOBILE */
+@media only screen and (max-width: 800px) {
+    .prsContainer.prsHorizontal{
+        grid-template-columns:  40px 40px 40px 40px;
+        grid-template-rows:     max-content 40px max-content max-content;
+        grid-template-areas:    
+            "vanvoor vanvoor ."
+            "price price price"
+            "staffelkorting staffelkorting staffelkorting"
+            "promotekst promotekst promotekst";
+    }
+    
+        .prsContainer.prsHorizontal.prsBuy{
+            grid-template-areas:
+                "vanvoor vanvoor . ."
+                "price price price wishlist"
+                "staffelkorting staffelkorting staffelkorting staffelkorting"
+                "promotekst promotekst promotekst .";
+        }
+    
+        .prsContainer.prsHorizontal.prsTeaser{
+            grid-template-columns:  40px 40px 40px 40px 40px 40px;;
+            grid-template-rows:     max-content 40px;
+            column-gap:             5px;
+            grid-template-areas:    
+                "vanvoor vanvoor vanvoor . . ."
+                "price price price promotekst promotekst promotekst";
+        }
+
+    .prsContainer.prsBuy.prsHorizontal .prsVanvoor{
+        margin:             0px 0px 0px 0px;
+        padding:            0;
+    }
+}

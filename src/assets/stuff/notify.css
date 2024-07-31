@@ -1,0 +1,95 @@
+#ntBodyContainer{
+    display:            none;
+    pointer-events:     none;
+    position:           fixed;
+    left:               0px;
+    top:                0px;
+    width:              100vw;
+    height:             100vh;
+    background-color:   rgba(var(--RGBcolorBlack),0.8);
+    z-index:            1000;
+    font-family:        'Roboto';
+    box-sizing:         border-box;
+    border:             1px solid var(--colorBlack);
+}
+#ntBodyContainer.visible{
+    display:            grid;
+    align-items:        center;
+    justify-content:    center;
+    pointer-events:     auto;
+}
+    #ntBodyContainer .ntContainer{
+        display:                grid;
+        grid-template-columns:  auto 50px;
+        grid-template-rows:     50px auto minmax(70px, auto);
+        grid-template-areas: 
+        "ntHeaderTitle ntHeaderClose"
+        "ntBody ntBody"
+        "ntButtons ntButtons";
+        min-width:              25vw;
+        max-width:              90vw;
+        background-color:       var(--colorWhite);
+    }
+        #ntBodyContainer .ntContainer .ntHeader{
+            grid-area:          ntHeaderTitle;
+            display:            grid;
+            align-items:        center;
+            justify-content:    start;
+            background-color:   var(--colorWhite);
+            padding-left:       15px;
+            font-weight:        700;
+        }
+        #ntBodyContainer .ntContainer .ntClose{
+            grid-area:          ntHeaderClose;
+            display:            grid;
+            align-items:        center;
+            justify-content:    center;
+            font-size:          23px;
+            color:              var(--colorGreen);
+            cursor:             pointer;
+            padding-bottom:     2px;
+        }
+            #ntBodyContainer .ntContainer .ntClose:hover{
+                background-color:   var(--colorGreen);
+                color:              var(--colorWhite);
+            }
+
+        #ntBodyContainer .ntContainer .ntBody{
+            grid-area:          ntBody;
+            display:            grid;
+            align-items:        center;
+            justify-content:    center;
+            background-color:   var(--colorLightGray);
+            padding:            25px 15px 25px 15px;
+            min-height:         7vh;
+            text-align:         center;
+            line-height:        150%;
+        }
+            #ntBodyContainer .ntContainer .ntBody a{
+                color:          var(--colorBlue);
+                text-decoration:none;
+            }
+            #ntBodyContainer .ntContainer .ntBody a:hover{
+                text-decoration:underline;
+            }
+
+        #ntBodyContainer .ntContainer .ntFooter{
+            grid-area:          ntButtons;
+            grid-auto-flow:     column;
+            grid-gap:           25px;
+            display:            grid;
+            align-items:        center;
+            justify-content:    center;
+            background-color:   var(--colorWhite);
+            padding:            10px;
+        }
+            #ntBodyContainer .ntContainer .ntFooter .ntBtn{
+                padding:            10px 30px 10px 30px;
+                border-radius:      4px;
+                cursor:             pointer;
+                text-align:         center;
+                min-width:          60px;
+            }
+                #ntBodyContainer .ntContainer .ntFooter .ntBtn:hover{
+                    filter:         brightness(110%);
+                }

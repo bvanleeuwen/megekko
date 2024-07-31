@@ -1,0 +1,65 @@
+#zoekresult .row{
+    display:                block;
+    font-family:            "Roboto",sans-serif;
+    padding:                5px;
+    line-height:            15px;
+    margin-left:            15px;
+    box-sizing:             border-box;
+    position:               relative;
+}
+    #zoekresult .row strong, #zoekresult .row a strong{
+        color:              #008FD5;
+    }
+    #zoekresult .row:hover, #zoekresult .row a:hover{
+        color:              #008FD5;
+        text-decoration:    underline;
+        cursor:             pointer;
+    }
+    #zoekresult .row.header{
+        text-transform:     uppercase;
+        color:              #8cd50b !important;
+        font-weight:        bolder;
+        margin-top:         10px;
+        margin-left:        5px;
+        cursor:             default;
+        text-decoration:    none;
+    }
+    #zoekresult .row img{
+        display:            inline-block;
+        width:              40px;
+        height:             40px;
+        vertical-align:     top;
+    }
+    #zoekresult .row .search_title{
+        display:            inline-block;
+        padding-left:       10px;
+        line-height:        40px;
+        vertical-align:     top;
+        width:              500px;
+        white-space:        nowrap;
+        overflow:           hidden;
+        text-overflow:      ellipsis;
+    }
+
+#zoekresult .row.supertitle{
+    display:                block;
+    background-color:       #008FD5;
+    font-weight:            bolder;
+    color:                  #FFF;
+    text-align:             center;
+    line-height:            40px;
+    margin-left:            0px;
+    margin-top:             10px;
+}
+
+#zoekresult .autocomplete_d {
+    position:               absolute;
+    right:                  10px;
+    color:                  #990000;
+    cursor:                 pointer;
+    padding:                4px;
+}
+#zoekresult .autocomplete_d:hover{
+    color:                  #FFFFFF;
+    background-color:       #FF0000;
+}

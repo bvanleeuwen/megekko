@@ -1,0 +1,483 @@
+var globalTimer;
+function notifyPassLength(elm){
+      if(elm.value.length>=20){
+            elm.parentNode.classList.add("pwLengthNote");
+      }else{
+            if(elm.parentNode.classList.contains("pwLengthNote")){
+                  elm.parentNode.classList.remove("pwLengthNote");
+            }
+      }
+}
+
+function createrandom(){
+      var rand=Math.floor(Math.random() * 99999) + 10000;
+      return rand;
+}
+
+function clearsearch(click){
+      document.getElementById("zoekicon").style.display='table-cell';
+      document.getElementById("zoekloading").style.display='none';
+      document.getElementById("zoekveld").value='';
+}
+function isNumberKey(evt) {
+      var charCode = (evt.which) ? evt.which : event.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            return false;
+      }else{
+            return true;
+      }
+}
+function safetext(input){
+      input=input.replace(/&/g, "&amp;");
+      input=input.replace(/"/g, "&quot;");
+      input=input.replace(/'/g, "&#039;");
+      input=input.replace(/</g, "&lt;");
+      input=input.replace(/>/g, "&gt;");
+      return input;
+}
+function showhidebut(id){
+      if(document.getElementById(id).style.display=='none'){
+            document.getElementById(id).style.display='table';
+            document.getElementById('but'+id).src='/templates/'+jstemplate+'/images/expand_up.png';
+      }else{
+            document.getElementById(id).style.display='none';
+            document.getElementById('but'+id).src='/templates/'+jstemplate+'/images/expand.png';
+      }
+}
+
+function pwrequest(veldnaam){
+      email=document.getElementById(veldnaam).value;
+      let xmlpw=new XMLHttpRequest();
+      xmlpw.onreadystatechange=function(){
+            if (xmlpw.readyState==4 && xmlpw.status==200){
+                  if(xmlpw.responseText.length>0){
+                        decoder=xmlpw.responseText;
+                        var data=decoder.split("||");
+                        if(data[0]=='dataok'){
+                              if(data[1]=='tesnel'){
+                                    document.getElementById("logininfo").innerHTML='<br>Pogingen te snel achter elkaar';
+                                    document.getElementById("logininfo").style.display='block';
+                                    document.getElementById("logininfo").style.height='40px';
+                                    setTimeout(function(){
+                                          document.getElementById("logininfo").style.height='0px';
+                                    }, 4000);
+                              }else if(data[1]=='ok'){
+                                    document.getElementById("logininfo").innerHTML='<br>De herstel E-mail is verzonden<br>(indien het account bestaat)';
+                                    document.getElementById("logininfo").style.display='block';
+                                    document.getElementById("logininfo").style.height='50px';
+                                    setTimeout(function(){
+                                          document.getElementById("logininfo").style.height='0px';
+                                    }, 6000);
+                              }
+                        }else{
+                              document.getElementById("logininfo").innerHTML='<br>Verzoek kon niet worden verwerkt';
+                              document.getElementById("logininfo").style.display='block';
+                              document.getElementById("logininfo").style.height='40px';
+                              setTimeout(function(){
+                                    document.getElementById("logininfo").style.height='0px';
+                              }, 4000);
+                        }
+                  }
+            }
+      }
+
+      if(email.length>0){
+            email=encodeURIComponent(email);
+            let randomnumber=Math.floor(Math.random() * 999999999) + 1;
+            var params = "mode=pwvergeten&option="+email+"&rand="+randomnumber+"&template="+jstemplate+"&key="+jsdatakey;
+            xmlpw.withCredentials = true;
+            xmlpw.open("POST","/login/"+logindata_security_token+"/",true);
+            xmlpw.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xmlpw.send(params);
+      }else{
+            document.getElementById("logininfo").innerHTML='<br>Vul eerst je e-mail adres in';
+            document.getElementById("logininfo").style.display='block';
+            document.getElementById("logininfo").style.height='40px';
+            setTimeout(function(){
+                  document.getElementById("logininfo").style.height='0px';
+            }, 4000);
+      }
+}
+
+function catchkey(key, inputtype) {
+      if (key.keyCode==13) {
+            if(inputtype=='email'){
+                  document.getElementById("loginpass").focus();
+            }else if(inputtype=='pass'){
+                  dologin();
+            }else if(inputtype=='zoek'){
+                  prepareZoek(0, "force");
+            }else if(inputtype=='customfilter'){
+                  productlist_page("setfilter", "customfilter");
+            }
+            return false;
+      }
+}
+
+
+function globalcomm(url, params, randstring, timeoutsec = 8000, callback){
+      let globalcommajax=new XMLHttpRequest();
+      globalcommajax.onreadystatechange=function(){
+            if (globalcommajax.readyState==4 && globalcommajax.status==200){
+                  var dataparts=globalcommajax.responseText;
+                  var datapartsbackup=dataparts;
+                  if(callback){
+                        try{
+                              let docallback = callback + "('callback',"+dataparts+")";
+                              eval(docallback);
+                        }catch(e){
+                              dataparts='';
+                        }
+                  }
+            }
+      }
+      globalcommajax.open("POST",url,true);
+      globalcommajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      globalcommajax.timeout = timeoutsec;
+      globalcommajax.withCredentials = true;
+      globalcommajax.ontimeout = function () {
+            if(callback){
+                  console.log(callback+' timeout');
+                  //var docallback = callback + "('timeout','')";
+                  //eval(docallback);
+            }
+      }
+
+      globalcommajax.send(params);
+}
+
+var limitscrollfix=0;
+function scrollLimit(e, divblock){
+      if(limitscrollfix<100){
+            var scrollobj=document.getElementById(divblock);
+            if(scrollobj.scrollHeight>400){
+                  if(scrollobj.offsetHeight + scrollobj.scrollTop >= scrollobj.scrollHeight){
+                        scrollobj.scrollTop=scrollobj.scrollTop-1;
+                        limitscrollfix++;
+                  }else if(scrollobj.scrollTop<1){
+                        scrollobj.scrollTop=1;
+                        limitscrollfix++;
+                  }
+            }
+      }
+}
+
+var navtoetsenbord='';
+function overlay(action){
+      if(action=='hover'){
+            clearTimeout(globalTimer);
+      }else if(action=='show'){
+            limitscrollfix=0;
+            document.getElementById("notifycontent").className = 'notifycontent';
+            document.getElementById('overlay').style.display='block';
+            if(document.getElementById('kiescat')){
+                  document.getElementById('kiescat').style.display='none';
+            }
+            document.getElementById('loginbox').style.display='none';
+            if(document.getElementById('showimg')){
+                  document.getElementById('showimg').style.display='none';
+            }
+            document.getElementById("zoekresult").style.display='none';
+            document.getElementById("notify").style.display='none';
+            setTimeout(function(){
+                  document.getElementById('overlay').style.backgroundColor='rgba(0,0,0,0.6)';
+            }, 20);
+      }else{
+            if(navtoetsenbord){
+                  document.removeEventListener('keyup', navtoetsenbord);
+            }
+
+            clearTimeout(globalTimer);
+            if(document.getElementById('kiescat')){
+                  document.getElementById('kiescat').style.display='none';
+            }
+            if(document.getElementById('catMenu')){
+                  document.getElementById('catMenu').classList.add('hiddenNav');
+            }
+            document.getElementById('loginbox').style.display='none';
+            if(document.getElementById('showimg')){
+                  document.getElementById('showimg').style.display='none';
+            }
+            document.getElementById("zoekresult").style.display='none';
+            document.getElementById("notify").style.display='none';
+
+            document.getElementById('overlay').style.backgroundColor='rgba(0,0,0,0.0)';
+            setTimeout(function(){
+                  document.getElementById('overlay').style.display='none';
+                  document.getElementById("notifycontent").className = 'notifycontent';
+            }, 500);
+            zoekactief=false;
+      }
+}
+
+function openlogin(){
+      scroll(0,0);
+      if(document.getElementById('overlay').style.display=='block'){
+            overlay('hide');
+      }else{
+            overlay('show');
+            document.getElementById('loginbox').style.display='block';
+            setTimeout(function(){
+                  document.getElementById('loginmail').focus();
+            }, 100);
+      }
+}
+
+
+function overlaynotify(titel, text){
+      var top = (window.pageYOffset || document.scrollTop)  - (document.clientTop || 0);
+      if(!top){
+            top=0;
+      }
+      var newtop=parseInt(top)+50;
+      // document.getElementById('notify').style.top=newtop+'px';
+
+      overlay('show');
+      notifycontent="";
+      if(titel !== null && titel != ''){
+            notifycontent += "<div class='title'>"+titel+"</div><br>";
+      }
+      notifycontent+=text;
+      document.getElementById('notifycontent').innerHTML    = notifycontent;
+      document.getElementById('notify').style.display       = 'block';
+}
+
+
+function navmore(groupid){
+      var hoogte=document.getElementById('ismore_height_'+groupid).clientHeight;
+      if((hoogte+'px')==document.getElementById('ismore_limitheight_'+groupid).style.maxHeight){
+            document.getElementById('ismore_limitheight_'+groupid).style.maxHeight='0px';
+            document.getElementById('ismore_more_'+groupid).innerHTML='Meer &#9662;';
+      }else{
+            document.getElementById('ismore_limitheight_'+groupid).style.maxHeight=hoogte+'px';
+            document.getElementById('ismore_more_'+groupid).innerHTML='Minder &#9652;';
+      }
+}
+
+
+function kiesCatFunc(calltype, data){
+      clearTimeout(globalTimer);
+      if(calltype=='open' || calltype=='openclick'){
+            if(document.getElementById('overlay').style.display=='block' && data==''){
+                  overlay('hide');
+            }else{
+                  var timeout=400;
+                  if(data=='' || calltype=='openclick' || (calltype=='open' && document.getElementById('kiescat_content').style.display == 'none')){
+                        timeout=25;
+                  }
+                  globalTimer=setTimeout(function(){
+                        var rand=createrandom();
+                        var resultaat=globalcomm('/scripts/shownav/v3/index.php?nav='+data+'&mode=json', '', rand, 6000, 'kiesCatFunc');
+                  }, timeout);
+            }
+      }else if(calltype=='callback'){
+            if(data==''){
+
+            }else{
+                  overlay('show');
+                  var jsondata=data;
+                  var createmenu="";
+                  var createnav="";
+                  if(jsondata.status=='ok'){
+
+                        // MENU
+                        for(menuitem in jsondata.data.menu){
+                              if(jsondata.data.menu[menuitem].active=='1'){
+                                    createmenu+="<div class='item active' onMouseOver='clearTimeout(globalTimer)'>"+jsondata.data.menu[menuitem].naam+"</div>";
+                              }else{
+                                    createmenu+="<div class='item' onMouseOver='kiesCatFunc(\"open\", "+jsondata.data.menu[menuitem].id+")' onClick='kiesCatFunc(\"openclick\", "+jsondata.data.menu[menuitem].id+")'>"+jsondata.data.menu[menuitem].naam+"</div>";
+                              }
+                        }
+
+                        document.getElementById('kiescat').classList.remove('direct');
+                        document.getElementById('kiescat_content').style.display='inline-block';
+                        if(jsondata.data.direct){
+                              createmenu+="<div class='spacer'></div>";
+                              createmenu+="<div class='title'>Direct naar:</div>";
+                              for(menuitem in jsondata.data.direct){
+                                    if(jsondata.data.direct[menuitem].active == '1'){
+
+                                          if(document.getElementById('kiescat')){
+                                                document.getElementById('kiescat').classList.add('direct');
+                                                document.getElementById('kiescat_content').style.display='none';
+                                          }
+
+                                          createmenu+="<a onMouseOver='clearTimeout(globalTimer)' href='"+jsondata.data.direct[menuitem].url+"' class='item active'>"+jsondata.data.direct[menuitem].naam+"</a>";
+                                    }else{
+                                          createmenu+="<a onMouseOver='kiesCatFunc(\"openclick\", "+jsondata.data.direct[menuitem].id+")' href='"+jsondata.data.direct[menuitem].url+"' class='item'>"+jsondata.data.direct[menuitem].naam+"</a>";
+                                    }
+                              }
+                        }
+
+                        // NAV ITEMS
+                        for(column in jsondata.data.cat){
+                              createnav+="<div class='nav_column'>";
+                              for(block in jsondata.data.cat[column]){
+
+                                    var groupid=jsondata.data.cat[column][block].groupid;
+
+                                    createnav+="<div class='block'>";
+
+                                          var ismore='';
+                                          createnav+="<a href='"+jsondata.data.cat[column][block].url+"'><div class='title'>"+jsondata.data.cat[column][block].title+"</div></a>";
+                                          for(navline in jsondata.data.cat[column][block].items){
+                                                if(jsondata.data.cat[column][block].items[navline].ismore=='0'){
+                                                      createnav+="<a href='"+jsondata.data.cat[column][block].items[navline].url+"'><div class='item'>"+jsondata.data.cat[column][block].items[navline].title+"</div></a>";
+                                                }else{
+                                                      if(ismore==''){
+                                                            ismore='TRUE';
+                                                            createnav+="<div class='ismore_limitheight' id='ismore_limitheight_"+groupid+"'>";
+                                                            createnav+="<div id='ismore_height_"+groupid+"'>";
+                                                      }
+                                                      createnav+="<a href='"+jsondata.data.cat[column][block].items[navline].url+"' name='ismore"+block+"' class='ismore_hidden'><div class='item'>"+jsondata.data.cat[column][block].items[navline].title+"</div></a>";
+                                                }
+                                          }
+                                          if(ismore=='TRUE'){
+                                                createnav+="</div>";
+                                                createnav+="</div>";
+                                          }
+
+                                          if(jsondata.data.cat[column][block].meer=='1'){
+                                                createnav+="<div class='meer' id='ismore_more_"+groupid+"' onClick='navmore("+groupid+")'>Meer &#9662;</div>";
+                                          }
+
+                                    createnav+="</div>";
+                              }
+                              createnav+="</div>";
+                        }
+                  }
+
+                  document.getElementById('kiescat_content').innerHTML=createnav;
+                  document.getElementById('kiescat_menu').innerHTML=createmenu;
+                  if(document.getElementById('kiescat')){
+                        document.getElementById('kiescat').style.display='block';
+                  }
+            }
+      }
+}
+
+
+function dologin(html = false){
+      var loginmail=encodeURIComponent(document.getElementById("loginmail").value);
+      var loginpass=encodeURIComponent(document.getElementById("loginpass").value);
+
+      let loginAjax=new XMLHttpRequest();
+      loginAjax.onreadystatechange=function(){
+
+            if (loginAjax.readyState==4 && loginAjax.status==200){
+                  decoder=loginAjax.responseText;
+
+                  var data=decoder.split("||");
+
+                  if(decoder.length>0 && data[0]=='dataok'){
+                        var iserror=0;
+
+                        if(data[1]=='FALSE'){
+                              iserror=1;
+                              document.getElementById("logininfo").innerHTML='<br>De ingevoerde gegevens zijn onjuist';
+                              document.getElementById("sessienaam").value='Je bent nog niet ingelogd';
+                              document.getElementById("logoutblock").style.display='none';
+                              document.getElementById("loginblock").style.display='block';
+                              document.getElementById("loginpass").value='';
+                        }else if(data[1]=='noadmin'){
+                              iserror=1;
+                              document.getElementById("logininfo").innerHTML='<br>Inloggen vanaf dit IP adres niet mogelijk';
+                              document.getElementById("sessienaam").value='Je bent nog niet ingelogd';
+                              document.getElementById("logoutblock").style.display='none';
+                              document.getElementById("loginblock").style.display='block';
+                              document.getElementById("loginpass").value='';
+                        }else{
+
+                              if(data[3]=='beheer'){
+                                    window.location = pageuri;
+                              }else{
+                                    document.getElementById("account_name").innerHTML=data[2];
+                                    document.getElementById("sessienaam").innerHTML='Welkom '+data[2];
+                                    document.getElementById("logoutblock").style.display='block';
+                                    document.getElementById("loginblock").style.display='none';
+                                    document.getElementById("loginmail").value='';
+                                    document.getElementById("loginpass").value='';
+
+                                    if(jsiswishlist == 1){
+                                          window.location.href = '/winkelmand/';
+                                    }
+
+                              }
+
+                        }
+
+                        if(iserror==1){
+                              document.getElementById("logininfo").style.display='block';
+                              document.getElementById("logininfo").style.height='40px';
+                              setTimeout(function(){
+                                    document.getElementById("logininfo").style.height='0px';
+                              }, 4000);
+                        }
+
+
+                  }
+            }
+      }
+
+      let randomnumber=Math.floor(Math.random() * 999999999) + 1;
+      var paramlogin = "mode=login&loginmail="+loginmail+"&loginpass="+loginpass+"&sid="+jssid+"&rand="+randomnumber+"&html="+html;
+
+      loginAjax.open("POST","/login/"+logindata_security_token+"/",true);
+      loginAjax.withCredentials = true;
+      loginAjax.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+      loginAjax.send(paramlogin);
+}
+
+function dologout(html = false){
+      let logoutajax=new XMLHttpRequest();
+      logoutajax.onreadystatechange=function(){
+            if (logoutajax.readyState==4 && logoutajax.status==200){
+                  decoder=logoutajax.responseText;
+                  if(decoder.length>0 && decoder=='dataok'){
+                        document.getElementById("sessienaam").value='';
+                        document.getElementById("logoutblock").style.display='none';
+                        document.getElementById("loginblock").style.display='block';
+                        document.getElementById("loginmail").value='';
+                        document.getElementById("loginpass").value='';
+                        document.getElementById("sessienaam").innerHTML='Je bent nog niet ingelogd';
+                        document.getElementById("account_name").innerHTML='ACCOUNT';
+
+                        if(document.getElementById("sitebeheermenu")){
+                              document.getElementById("sitebeheermenu").innerHTML='';
+                        }
+
+                        if(jslogoutreload == 1){
+                              window.location = pageuri;
+                        }
+
+                  }
+            }
+      }
+      let randomnumber=Math.floor(Math.random() * 999999999) + 1;
+      var paramzoek = "mode=logout&sid="+jssid+"&rand="+randomnumber+"&html="+html;
+      logoutajax.open("POST","/login/"+logindata_security_token+"/",true);
+      logoutajax.withCredentials = true;
+      logoutajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+      logoutajax.send(paramzoek);
+}
+
+
+
+var zoekpage=0;
+var zoektimer;
+var lastsearch='';
+var zoekcache=0;
+var zoekfilter='';
+var zoekbezig=false;
+
+function setCookiemelding(){
+      var days=356;
+      var date = new Date();
+      date.setTime(date.getTime() + (days*24*60*60*1000));
+      var expires = "; expires=" + date.toUTCString();
+      document.cookie = 'cookiemelding' + "=" + 'set' + expires + "; path=/;SameSite=Lax";
+      document.getElementById('cookie_container').style.display='none';
+}
+if(navigator.cookieEnabled==0){
+      document.getElementById('cookie_container').style.display='none';
+}

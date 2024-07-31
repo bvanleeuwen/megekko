@@ -1,0 +1,574 @@
+.prdContainer {
+    display: grid;
+    grid-template-columns: 220px auto;
+    grid-template-areas:
+        "prdHeader prdHeader"
+        "prdImg prdSubheader"
+        "prdImg prdSpecs"
+        "prdFooter prdFooter"
+        "prdSpacerHorizontal prdSpacerHorizontal";
+    padding: 10px 10px 10px 10px;
+    box-sizing: border-box;
+    align-items: start;
+}
+
+/* HEADER */
+.prdContainer .prdHeader {
+    grid-area: prdHeader;
+    line-height: 25px;
+    font-weight: 600;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 65px;
+}
+.prdContainer .prdHeader .prdTitle {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    max-width: 100%;
+}
+
+.prdContainer .prdHeader .wlheart {
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    cursor: pointer;
+}
+.prdContainer .prdHeader .wlheartAmount {
+    position: absolute;
+    right: 25px;
+    top: 0px;
+    font-size: 11px;
+    color: #999;
+    font-family: arial, verdana, sans-serif;
+    font-weight: 400;
+}
+
+.prdSpacerHorizontal {
+    grid-area: prdSpacerHorizontal;
+    background-color: var(--colorGray);
+    height: 1px;
+    margin-top: 10px;
+}
+
+/* BODY */
+
+.prdContainer .prdImg .prdRanknrCorner {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 70px solid var(--colorGreen);
+    border-right: 70px solid transparent;
+}
+
+.prdContainer .prdImg .prdRanknr {
+    position: absolute;
+    font-size: 30px; 
+    color: #fff;
+    /* padding-left: 5px; */
+    padding-top: 5px;
+    width: 39px;
+    text-align: center;
+}
+
+.prdContainer .prdImg {
+    grid-area: prdImg;
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+}
+.prdContainer .prdImg img {
+    margin-top: 10px;
+    max-width: 180px;
+}
+
+/* USP */
+.prdContainer .prdImg .prdUsp {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    z-index: 10;
+}
+.prdContainer .prdImg .prdUsp .uspBlock {
+    display: grid;
+    grid-template-columns: min-content 15px;
+    grid-template-rows: 15px;
+    line-height: 15px;
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+.prdContainer .prdImg .prdUsp .uspBlock > div:nth-child(1) {
+    background-color: var(--colorRed);
+    color: var(--colorWhite);
+    padding-left: 5px;
+}
+.prdContainer .prdImg .prdUsp .uspBlock > div:nth-child(2) {
+    background-color: transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid var(--colorRed);
+}
+.prdContainer .prdImg .prdUsp .uspBlock.large {
+    grid-template-columns: min-content 20px;
+    font-size: 12px;
+    grid-template-rows: 20px;
+    line-height: 20px;
+}
+.prdContainer .prdImg .prdUsp .uspBlock.large > div:nth-child(2) {
+    background-color: transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid var(--colorRed);
+}
+
+.prdContainer .prdImg .prdOverlayImg {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.prdContainer .prdImg .prdOverlayImg.lt {
+    left: 0px;
+    top: 0px;
+}
+.prdContainer .prdImg .prdOverlayImg.lb {
+    left: 0px;
+    bottom: 5px;
+}
+.prdContainer .prdImg .prdOverlayImg.rt {
+    right: 10px;
+    top: 0px;
+}
+.prdContainer .prdImg .prdOverlayImg.rb {
+    right: 10px;
+    bottom: 5px;
+}
+.prdContainer .prdImg .prdOverlayImg.c {
+    left: calc(50% - 25px);
+    top: calc(50% - 25px);
+}
+.prdContainer .prdImg .prdOverlayImg > img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.prdContainer .prdImg .prdOverlayImg.small {
+    width: 61px;
+    height: 61px;
+    background-size: 55px 55px;
+    background-color: var(--colorWhite);
+    border: 1px solid var(--colorGray);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.prdContainer .prdImg .prdOverlayImg.large {
+    width: 76px;
+    height: 76px;
+    background-size: 70px 70px;
+    background-color: var(--colorWhite);
+    border: 1px solid var(--colorGray);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.prdContainer .prdSubheader {
+    grid-area: prdSubheader;
+    min-height: 30px;
+    font-size: 11px;
+    line-height: 30px;
+    padding: 0px 0px 0px 5px;
+    border-bottom: 1px solid var(--colorGray);
+}
+
+.prdContainer .prdSpecs {
+    grid-area: prdSpecs;
+    min-height: 160px;
+}
+.prdContainer .prdSpecs > .prdSpec {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    column-gap: 5px;
+}
+.prdContainer .prdSpecs > .prdSpec:nth-child(2n) {
+    background-color: rgba(var(--RGBcolorBlack), 0.05);
+}
+
+.prdContainer .prdSpecs > .prdSpec > div {
+    font-size: 12px;
+    line-height: 25px;
+    padding: 0px 0px 0px 5px;
+}
+.prdContainer .prdSpecs > .prdSpec img {
+    position: relative;
+    top: 2px;
+}
+
+.prdContainer .prdSoldout {
+    padding: 5px;
+    font-size: 12px;
+}
+
+/* FOOTER */
+.prdContainer .prdFooter {
+    grid-area: prdFooter;
+    display: grid;
+    grid-template-columns: max-content max-content auto max-content;
+    grid-template-areas: "prdVergelijk prdProductinfolink prdEnergielabel prdPricer";
+    margin-top: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.prdContainer .prdFooter .prdVergelijk {
+    grid-area: prdVergelijk;
+    display: grid;
+    grid-template-columns: 22px auto;
+    grid-template-rows: max-content;
+    grid-template-areas:
+        "compareStart compareStart"
+        "compareCheckbox compareLabel";
+    width: 220px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkStart {
+    grid-area: compareStart;
+    display: none;
+    position: relative;
+}
+.prdContainer .prdFooter .prdVergelijk.compare .prdVergelijkStart {
+    display: block;
+}
+
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkStart .compareTriangel {
+    position: absolute;
+    left: 4px;
+    border-top: 6px solid var(--colorBlue);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+}
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkStart:hover .compareTriangel {
+    border-top: 6px solid var(--colorDarkBlue);
+}
+
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkStart .compareText {
+    background-color: var(--colorBlue);
+    position: relative;
+    left: -6px;
+    bottom: -2px;
+    color: var(--colorWhite);
+    font-size: 13px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px;
+    width: max-content;
+    height: max-content;
+}
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkStart:hover .compareText {
+    background-color: var(--colorDarkBlue);
+}
+
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkCheck {
+    grid-area: compareCheckbox;
+    line-height: 40px;
+    width: 22px;
+}
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkCheck > input[type="checkbox"] {
+    position: relative;
+    top: 2px;
+    width: 22px;
+    margin: 0;
+    padding: 0;
+}
+.prdContainer .prdFooter .prdVergelijk .prdVergelijkLabel {
+    grid-area: compareLabel;
+    line-height: 40px;
+}
+
+.prdContainer .prdFooter .prdProductinfolink {
+    grid-area: prdProductinfolink;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+    color: var(--colorBlue);
+    cursor: pointer;
+}
+.prdContainer .prdFooter .prdProductinfolink:hover {
+    text-decoration: underline;
+}
+
+.prdContainer .prdFooter .prdEnergielabel {
+    grid-area: prdEnergielabel;
+}
+.prdContainer .prdFooter .prdEnergielabel > div {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prdContainer .prdFooter .prdEnergielabel img {
+    max-width: 50px;
+    max-height: 50px;
+    cursor: pointer;
+}
+.prdContainer .prdPricer {
+    grid-area: prdPricer;
+    display: none;
+}
+.prdContainer .prdPricer.pricerFooter {
+    display: inline-block;
+}
+
+.wlheart {
+    cursor: pointer;
+}
+
+.wlheart {
+    background: url("/templates/basic/images/hartje20v2.png") 0px 0px;
+    width: 20px;
+    height: 20px;
+}
+.wlheart.large {
+    background: url("/templates/basic/images/hartje50.png") 0px 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.wlheart.on {
+    background: url("/templates/basic/images/hartje20v2.png") -20px 0px;
+}
+.wlheart.large.on {
+    background: url("/templates/basic/images/hartje50.png") -50px 0px;
+}
+
+/* Minimal product block */
+.prdContainer.minimal {
+    display: grid;
+    grid-template-columns: 80px auto max-content;
+    grid-template-rows: 65px 1px;
+    grid-template-areas: "prdImg prdInfo prdPricer"
+                        "prdSpacerHorizontal prdSpacerHorizontal prdSpacerHorizontal";
+}
+
+.prdContainer.minimal .prdImg img {
+    height: 60px;
+    width: 60px;
+}
+
+.prdContainer.minimal .prdInfo{
+    grid-area: prdInfo;
+    /* height: 100%; */
+    padding: 5px;
+    display: grid;
+    grid-template-columns: minmax(200px, 650px);
+    grid-template-rows: auto repeat(2, max-content);
+    grid-template-areas:
+        "prdHeader"
+        "prdSubheader"
+        "prdBreadcrumbs";
+}
+
+.prdContainer.minimal .prdInfo .prdHeader {
+    grid-template-columns: 100%;
+}
+
+.prdContainer.minimal .prdInfo .prdHeader .prdTitle {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prdContainer.minimal .prdInfo .prdSubheader {
+    border-bottom: none;
+    color: #777777;
+    padding: unset;
+    min-height: unset;
+    line-height: unset;
+}
+
+.prdContainer.minimal .prdInfo .prdBreadcrumbs {
+    grid-area: prdBreadcrumbs;
+}
+
+.prdContainer.minimal .prdInfo .prdBreadcrumbs > a {
+    line-height: 15px;
+    font-family: arial;
+    font-size: 11px;
+    color: #777777;
+}
+
+.prdContainer.minimal .prdInfo .prdBreadcrumbs > a:hover{
+    text-decoration: underline
+}
+
+
+.prdContainer.minimal .prdPricer {
+    align-self: center;
+}
+
+.prdContainer.minimal .prdInfo .prdBreadcrumbs .breadcrumb_arrow:last-child {
+    display: none
+}
+/* ===================== */
+
+/* MOBILE */
+@media only screen and (max-width: 800px) {
+    .prdContainer {
+        display: grid;
+        grid-template-columns: minmax(auto, 250px) auto;
+        grid-template-areas:
+            "prdHeader prdHeader"
+            "prdImg prdPricer"
+            "prdSubheader prdSubheader"
+            "prdSpecs prdSpecs"
+            "prdFooter prdFooter"
+            "prdSpacerHorizontal prdSpacerHorizontal";
+        padding: 5px 10px 5px 10px;
+        box-sizing: border-box;
+        align-items: start;
+    }
+
+    .prdContainer .prdHeader {
+        line-height: 20px;
+    }
+    .prdContainer .prdHeader .prdTitle {
+        white-space: normal;
+        padding: 0px;
+        width: 100%;
+    }
+
+    .prdContainer .prdSpecs {
+        min-height: max-content;
+    }
+    .prdContainer .prdSpecs > .prdSpec {
+        grid-template-columns: 40% 60%;
+    }
+    .prdContainer .prdSpecs > .prdSpec > div {
+        line-height: 20px;
+    }
+
+    .prdContainer .prdImg .prdRanknrCorner {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 50px solid var(--colorGreen);
+        border-right: 50px solid transparent;
+    }
+
+    .prdContainer .prdImg .prdRanknr {
+        position: absolute;
+        font-size: 22px; 
+        color: #fff;
+        padding-top: 2px;
+        width: 25px;
+        text-align: center;
+    }
+
+    .prdContainer .prdImg img {
+        max-width: 125px;
+        max-height: 125px;
+    }
+    .prdContainer .prdImg .prdOverlayImg.large {
+        width: 61px;
+        height: 61px;
+        background-size: 55px 55px;
+        background-color: var(--colorWhite);
+        border: 1px solid var(--colorGray);
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    .prdContainer .prdImg .prdOverlayImg .uspBlock {
+        display: none;
+    }
+    .prdContainer .prdFooter {
+        grid-area: prdFooter;
+        display: grid;
+        grid-template-columns: auto minmax(auto, 50%);
+        grid-template-rows: max-content;
+        grid-template-areas:
+            "prdVergelijk prdVergelijk"
+            "prdProductinfolink prdEnergielabel"
+            "prdPricer prdPricer";
+        margin-top: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .prdContainer .prdFooter .prdEnergielabel > div {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .prdContainer .prdPricer.pricerHeader {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    .prdContainer .prdPricer.pricerFooter {
+        display: none;
+    }
+
+    .prdSpacerHorizontal {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .wlheart {
+        background: url("/templates/basic/images/hartje20v2.png") 0px 0px;
+        width: 20px;
+        height: 20px;
+        z-index: 100;
+        cursor: pointer;
+    }
+    .wlheart.large {
+        background: url("/templates/basic/images/hartje50.png") 0px 0px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .wlheart.on {
+        background: url("/templates/basic/images/hartje20v2.png") -20px 0px;
+    }
+    .wlheart.large.on {
+        background: url("/templates/basic/images/hartje50.png") -50px 0px;
+    }
+
+
+    /* Minimal product block */
+    .prdContainer.minimal {
+        grid-template-columns: 25% 75%;
+        grid-template-rows: 30px 30px auto 1px;
+        margin-bottom: 10px;
+        grid-template-areas: "prdInfo prdInfo"
+                            "prdInfo prdInfo"
+                            "prdImg prdPricer"
+                            "prdSpacerHorizontal prdSpacerHorizontal";
+    }
+
+    .prdContainer.minimal .prdPricer.pricerFooter {
+        display: inline-block;
+        justify-self: end;
+        align-self: center;
+    }
+
+    .prdContainer.minimal .prdInfo .prdBreadcrumbs {
+        display: none;
+    }
+    /* ===================== */
+
+}

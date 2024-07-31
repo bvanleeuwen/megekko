@@ -1,0 +1,137 @@
+function wishlistHeart(f,a=null,m=null,c=true){
+    // f=func, a=articlenr, m=mode, c=confirm
+    if(f == 'set'){
+        
+        if(!isNaN(a)){
+            if(m == 1){
+                let wl = wishlistHeart('get');
+                if(wl == ''){
+                    wl = {};
+                }
+                wl[a] = {'t':Math.floor(Date.now() / 1000),'m':'add'};
+
+                if(c == false){
+                    let msgTitle   = "Verlanglijst";
+                    let msgBody    = "Het product is toegevoegd aan je verlanglijst."
+                    let msgButtons = [
+                        {
+                            "bgColor":  "bgGreen",
+                            "color":    "white",
+                            "onclick":  function(){ ntClose(); },
+                            "title":    "Oké"
+                        },
+                        {
+                            "bgColor":  "bgBlue",
+                            "color":    "white",
+                            "onclick":  function(){ window.location.href="/account/verlanglijst"; },
+                            "title":    "Bekijk je verlanglijst"
+                        }
+                    ];
+                    overlayConfirm(msgTitle, msgBody, msgButtons);
+
+                    if(pageuri && pageuri.includes("account/verlanglijst")){
+                        if (typeof refreshProducts === "function") {
+                            setTimeout(function(){
+                                refreshProducts('request');
+                            },300);
+                        }
+                    }
+                }
+
+                localStorage.setItem("wishlist",JSON.stringify(wl));
+                wishlistHeart('update');
+
+            }else if(m == 0){
+                let wl = wishlistHeart('get');
+                if(c == false){
+                    let msgTitle   = "Weet je het zeker?";
+                    let msgBody    = "<b>Verwijderen product?</b>Weet je zeker dat je dit product van jouw verlanglijst wilt halen?"
+                    let msgButtons = [
+                        {
+                                "bgColor":  "bgRed",
+                                "color":    "white",
+                                "onclick":  function(){ wishlistHeart(f,a,0,true); },
+                                "title":    "Ja"
+                        },
+                        {
+                                "bgColor":  "bgGreen",
+                                "color":    "white",
+                                "onclick":  function(){ ntClose(); },
+                                "title":    "Nee"
+                        }
+                    ];
+                    overlayConfirm(msgTitle, msgBody, msgButtons);
+                }else{
+                    wl[a] = {'t':Math.floor(Date.now() / 1000),'m':'remove'};
+                    ntClose();
+                    if(pageuri && pageuri.includes("account/verlanglijst")){
+                        if (typeof refreshProducts === "function") {
+                            setTimeout(function(){
+                                refreshProducts('request');
+                            },300);
+                        }
+                    }
+                }
+
+                localStorage.setItem("wishlist",JSON.stringify(wl));
+                wishlistHeart('update');
+
+            }else{
+                let wl = wishlistHeart('get');
+                if(typeof wl[a] == 'undefined' || wl[a]['m'] == 'remove'){
+                    wishlistHeart(f,a,1,c);
+                }else{
+                    if(a !== null && !isNaN(a)){
+                        wishlistHeart(f,a,0,c);
+                    }
+                }
+            }
+
+        }
+
+    }else if(f == 'get'){
+        if(typeof(Storage) !== "undefined") {
+            if(localStorage.getItem("wishlist") !== null && localStorage.getItem("wishlist") != ''){
+                return JSON.parse(localStorage.getItem("wishlist"));
+            }else{
+                return {};
+            }
+        }
+    }else if(f == 'update'){
+        let wl = wishlistHeart('get');
+        let h  = document.querySelectorAll('[data-wlheart]');
+        let s  = false;
+
+        for(a in wl){
+            if(wl[a] && wl[a]['m'] && (wl[a]['m'] == 'add' || wl[a]['m'] == 'remove')){
+                s = true;
+            }
+        }
+
+        for(i=0; i<h.length; i++){
+            let a = h[i].dataset.wlheart;
+            if(wl[a] && (wl[a]['m'] == 'add' || wl[a]['m'] == 'on')){
+                h[i].classList.add('on');
+            }else{
+                h[i].classList.remove('on');
+            }
+        }
+
+        if(document.getElementById('header_verlanglijst_aantal')){
+            let heartAmount = Object.keys(wl).length;
+            document.getElementById('header_verlanglijst_aantal').innerHTML = heartAmount;
+            if(heartAmount > 0){
+                document.getElementById('header_verlanglijst_aantal').classList.add('show');
+            }else{
+                document.getElementById('header_verlanglijst_aantal').classList.remove('show');
+            }
+        }
+
+        if(s == true){
+            wishlistHeart('sync');
+        }
+
+    }else if(f == 'sync'){
+        uidhelper('sync');
+    }
+}

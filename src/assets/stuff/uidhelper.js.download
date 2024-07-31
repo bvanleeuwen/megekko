@@ -1,0 +1,64 @@
+function uidhelper(calltype, data){
+
+    if(calltype=='login'){
+            let uidhelper = localStorage.getItem("uidhelper");
+            globalcomm('/scripts/api/uidhelper/endpoint.php', 'func=login&uidhelper='+encodeURIComponent(uidhelper), '', 1500, 'uidhelper');
+    }else if(calltype=='sync'){
+            let uidhelper   = localStorage.getItem("uidhelper");
+            let wishlist    = localStorage.getItem("wishlist");
+            let thumbs      = localStorage.getItem("thumbs");
+
+            let thumbsSync  = {};
+            if(thumbs != null){
+                thumbs = JSON.parse(thumbs);
+                for(i in thumbs){
+                    let t = thumbs[i];
+                    if(typeof t['sync'] !== 'undefined' && t['sync'] != ''){
+                        thumbsSync[i] = t;
+                    }
+                }
+            }
+            thumbsSync = JSON.stringify(thumbsSync);
+
+            if(wishlist){
+                if(wishlist.includes('null')){
+                    localStorage.setItem('wishlist', '{}');
+                    return false;
+                }
+            }
+
+            for(x in wishlist){
+                if(wishlist[x] == null){
+                    localStorage.setItem('wishlist', '{}');
+                    return false;
+                }
+            }
+
+            globalcomm('/scripts/api/uidhelper/endpoint.php', 'func=sync&uidhelper='+encodeURIComponent(uidhelper)+'&wishlist='+encodeURIComponent(wishlist)+'&thumbs='+encodeURIComponent(thumbsSync), '', 1500, 'uidhelper');
+    }else if(calltype=='callback'){
+        if(data['name'] && data['name'] != ''){
+            document.getElementById('account_name').innerText = 'Hallo '+data['name'];
+        }
+        if(data['wishlist']){
+            if(data['wishlist'] == ''){
+                localStorage.setItem('wishlist', '{}');
+            }else{
+                localStorage.setItem('wishlist', JSON.stringify(data['wishlist']));
+            }
+            wishlistHeart('update');
+        }
+        if(data['thumbs']){
+            let thumbs      = localStorage.getItem("thumbs");
+            thumbs          = JSON.parse(thumbs);
+            if(data['thumbs'].length > 0){
+                for(i=0; i<data['thumbs'].length; i++){
+                    let t = data['thumbs'][i];
+                    if(thumbs[t]['sync']){
+                        delete thumbs[t]['sync'];
+                    }
+                }
+                localStorage.setItem('thumbs', JSON.stringify(thumbs));
+            }
+        }
+    }
+}

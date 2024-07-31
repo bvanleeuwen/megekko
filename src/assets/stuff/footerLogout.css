@@ -1,0 +1,10 @@
+@media screen and (min-width: 1050px) {
+    footer .footerLinks .col .row.footerlogout.footerhidden{
+        display: inherit !important;
+    }
+}
+@media screen and (max-width: 1049px) {
+    footer .footerLinks .col.open .row.footerlogout{
+        display: inherit !important;
+    }
+}

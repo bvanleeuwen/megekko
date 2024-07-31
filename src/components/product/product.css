@@ -1,0 +1,124 @@
+main {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.heading h1 {
+  font-size: 24px;
+}
+
+.hero {
+  margin-top: 8px;
+  display: flex;
+  gap: 24px;
+}
+.hero .wrapper {
+  height: 600px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero .wrapper .tags {
+  width: 100%;
+  min-height: 50px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: 4px;
+}
+.hero .wrapper .tags p {
+  padding: 0 8px;
+  font-size: 13px;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+  border-radius: 4px;
+  color: white;
+  background: #C83C3C;
+}
+.hero .wrapper .media {
+  height: 540px; /* checkout height - checkout price */
+  display: flex;
+  justify-content: space-between;
+}
+.hero .wrapper .media .thumbnails {
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  overscroll-behavior-y: contain;
+}
+.hero .wrapper .media .thumbnails .thumbnailOverflow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero .wrapper .media .thumbnails .thumbnailOverflow div {
+  width: 80px;
+  height: 80px;
+  padding: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.hero .wrapper .media .thumbnails .thumbnailOverflow div.active {
+  border: 1px solid #B3B3B3;
+}
+.hero .wrapper .media .thumbnails .thumbnailOverflow div img {
+  max-width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+.hero .wrapper .media .mainImage {
+  padding: 32px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .wrapper .media .mainImage img {
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+}
+
+.info section h2 {
+  padding: 32px 0 16px;
+}
+.info section p {
+  text-align: justify;
+}
+.info section .grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  margin-bottom: 24px;
+}
+.info section .grid > div {
+  max-width: 49%;
+  flex: 49%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+.info section .grid > div > p:first-child {
+  font-weight: 600;
+}
+.info section .grid > div:nth-of-type(4n+1), .info section .grid > div:nth-of-type(4n+2) {
+  background: #f3f3f3;
+}
+.info section a {
+  color: #8CD50B;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  transition: all 0.1s;
+}
+.info section a:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+/*# sourceMappingURL=product.css.map */

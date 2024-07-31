@@ -1,0 +1,170 @@
+function addCompare(a, n){
+    if (localStorage.getItem("compareData") === null) {
+          localStorage.setItem('compareData', JSON.stringify({}));
+    }
+
+    let compareData         = localStorage.getItem('compareData');
+    compareData             = JSON.parse(compareData);
+    if(!compareData[p]){ compareData[p] = {} };
+    if(!compareData[p][s]){ compareData[p][s] = {} };
+    compareData[p][s][a]    = n;
+    localStorage.setItem('compareData', JSON.stringify(compareData));
+    getCompare();
+}
+
+function removeCompare(a){
+    let compareData = localStorage.getItem('compareData');
+    compareData = JSON.parse(compareData);
+
+    if(compareData[p][s][a]){
+          delete(compareData[p][s][a])
+    }
+
+    if(Object.keys(compareData[p][s]).length == 0){
+          delete(compareData[p][s]);
+    }
+    localStorage.setItem('compareData', JSON.stringify(compareData));
+    getCompare();
+}
+
+function startCompare(e){
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      let compareData = localStorage.getItem('compareData');
+      compareData = JSON.parse(compareData);
+
+      let compareDataCat = {};
+      if(compareData[p][s]){
+            compareDataCat = compareData[p][s];
+      }
+
+      let catList         = Object.keys(compareDataCat).join(',');
+      let compareUrl      = '/vergelijk/'+catList;
+      if(typeof p !== 'undefined'){
+            if(isNaN(p)){
+                  compareUrl += "/"+p;
+            }
+      }
+
+    window.location.href=compareUrl;
+}
+
+function getCompare(){
+
+    if(typeof localStorage === 'undefined'){
+          let containers = document.querySelectorAll('[data-compareContainer]');
+          for(let i=0; i<containers.length; i++){
+                containers[i].style.display = 'none';
+          }
+          return false;
+    }
+
+    if (localStorage.getItem("compareData") === null) {
+          localStorage.setItem('compareData', JSON.stringify({}));
+    }
+    let compareData = localStorage.getItem('compareData');
+    compareData = JSON.parse(compareData);
+
+    let compareDataCat = {};
+    if(compareData[p] && compareData[p][s]){
+          compareDataCat = compareData[p][s];
+    }
+
+    let containers = document.querySelectorAll('[data-compareContainer]');
+    for(let i=0; i<containers.length; i++){
+          let containerEl = containers[i];
+          containerEl.classList.remove('compare');
+    }
+
+    let checks              = document.querySelectorAll('[data-compareCheck]');
+    for(let i=0; i<checks.length; i++){
+          let checkEl       = checks[i];
+          let checkArt      = checkEl.dataset.comparecheck;
+          let checkDisabled = Object.keys(compareDataCat).length >= compareLimit;
+
+          if(compareDataCat[checkArt]){
+                checkEl.title                 = 'Geselecteerd voor vergelijking';
+                checkEl.disabled              = false;
+                checkEl.checked               = true;
+
+                if(Object.keys(compareDataCat).length > 1){
+                      document.querySelector("[data-compareContainer='"+checkArt+"']").classList.add('compare');
+                }
+
+          }else{
+                checkEl.disabled  = checkDisabled;
+                checkEl.checked   = false;
+                if(checkDisabled == true){
+                      checkEl.title     = 'Maximaal aantal producten selecteerd';
+                      document.querySelector("[data-compareLabel='"+checkArt+"']").classList.add('limit');
+                      document.querySelector("[data-compareLabel='"+checkArt+"']").innerHTML = 'Maximum bereikt';
+                }else{
+                      checkEl.title     = 'Vergelijk product';
+                      document.querySelector("[data-compareLabel='"+checkArt+"']").classList.remove('limit');
+                      document.querySelector("[data-compareLabel='"+checkArt+"']").innerHTML = 'Vergelijk product';
+                }
+          }
+    }
+
+    let compareOverview     = "";
+    for(i in compareDataCat){
+          compareOverview += "<div class='compareLine'><div><img src='/productimg/"+i+"/supermini/1.jpg'></div><div>" + compareDataCat[i] + "</div><div onClick='removeCompare(" + i + ")'>&#10005;</div></div>";
+    }
+
+    document.querySelector('#compareOverviewHeader .c_header').innerHTML  = "Producten vergelijken (" + Object.keys(compareDataCat).length + " / " + compareLimit + ")";
+    document.getElementById('compareOverviewContent').innerHTML = compareOverview;
+    
+      // Compare overview
+      if(Object.keys(compareDataCat).length > 0){
+            document.getElementById('compareOverview').classList.add('show');
+      }else{
+            document.getElementById('compareOverview').classList.remove('show');
+      }
+
+      // Compare button
+      if(Object.keys(compareDataCat).length > 1){
+            document.querySelector("#compareOverview .c_compare").classList.add('show');
+      }else{
+            document.querySelector("#compareOverview .c_compare").classList.remove('show');
+      }
+
+    setTimeout(function(){compareScale();},100);
+}
+
+function compareScale(){
+    let c = document.getElementById('compareOverview');
+    let b = document.getElementById('compareOverviewContent');
+    if(c.classList.contains('open')){
+          let h = b.scrollHeight;
+          b.style.maxHeight = h+'px';
+    }else{
+          b.style.maxHeight = 0+'px';
+    }
+}
+
+function compareOverview(a = null){
+    if(a == null){
+          let c = document.getElementById('compareOverview');
+          c.classList.toggle('open');
+          getCompare();
+    }else{
+          let el = document.querySelector("[data-comparecheck='"+a+"']");
+          if(el){
+                el.checked = false;
+          }
+          compareCheck(a);
+    }
+}
+
+function compareCheck(a){
+    let el      = document.querySelector("[data-comparecheck='"+a+"']");
+    let cont    = document.querySelector("[data-compareContainer='"+a+"']");
+
+    if(el.checked == false){
+          removeCompare(a);
+    }else{
+          addCompare(a, cont.dataset.compareproductname);
+    }
+}

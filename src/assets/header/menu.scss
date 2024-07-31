@@ -1,0 +1,54 @@
+.menu {
+  display: flex;
+  gap: 16px;
+  margin-left: auto;
+
+  .menuItem {
+    position: relative;
+    display: flex;
+    place-items: center;
+    gap: 4px;
+
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    line-height: 1;
+
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .menuItemExtra {
+      position: absolute;
+      top: -10%;
+      right: -20%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 16px;
+      height: 16px;
+
+      font-size: 11px;
+      border-radius: 50%;
+
+
+      &#header_verlanglijst_aantal {
+        background: #c83c3c;
+      }
+
+      &#header_winkelmand_aantal {
+        background: #008FD5;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .menuItem svg {
+    color: #4C4D4E;
+  }
+}

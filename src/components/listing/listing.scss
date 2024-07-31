@@ -1,0 +1,180 @@
+main {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+
+  h1 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .shortcuts {
+    display: none;
+
+    margin: 20px 0;
+    //display: flex;
+    gap: 8px;
+
+    a {
+      height: 120px;
+      display: flex;
+    }
+  }
+}
+
+.wrapper {
+  margin: 32px 0;
+  display: flex;
+  //gap: 24px;
+  gap: 12px;
+}
+
+.content {
+  flex: 1;
+
+  .product {
+    position: relative;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+
+    border-bottom: 1px solid #E6E6E6;
+
+    .heading {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h2 {
+        font-size: 18px;
+
+        -webkit-transition: all 0.1s;
+        -moz-transition: all 0.1s;
+        transition: all 0.1s;
+
+        &:hover {
+          cursor: pointer;
+          color: #8CD50B;
+        }
+      }
+    }
+
+    .tags {
+      width: calc(100% - 96px); // entire width - 2x button
+      position: absolute;
+      top: 48px;
+      left: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      align-content: flex-start;
+      gap: 4px;
+
+      p {
+        padding: 0 8px;
+
+        font-size: 13px;
+        text-transform: uppercase;
+        text-wrap: nowrap;
+        border-radius: 4px;
+        color: white;
+        background: #C83C3C;
+      }
+    }
+
+    .info {
+      display: flex;
+
+      img {
+        width: 230px;
+        height: fit-content;
+        padding: 0 16px;
+
+        cursor: pointer;
+      }
+
+      .specs {
+        display: flex;
+        align-content: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        column-gap: 8px;
+        margin: 24px 0 16px 0;
+
+        > div {
+          max-width: 49%;
+          flex: 49%; // make sure we have space left for the gap
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px 16px;
+          font-size: 13px;
+
+          // make only name bold
+          > p:first-child {
+            font-weight: 600;
+          }
+
+          // every other row
+          &:nth-of-type(4n+1), &:nth-of-type(4n+2) {
+            background: #f3f3f3;
+          }
+        }
+      }
+    }
+
+    .footing {
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+
+      .priceContainer {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        .price {
+          width: 130px;
+          height: 100%;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          border-radius: 8px;
+          font-weight: 500;
+          color: white;
+          background: linear-gradient(135deg, #84c100 0%, #84c100 89%, #8cd50b 89%, #8cd50b 100%);
+
+          &.previous {
+            scale: 0.7;
+            width: fit-content;
+            margin-left: auto;
+            color: #4C4D4E;
+            background: linear-gradient(to left top, transparent 47.75%, currentColor 49.5%, currentColor 50.5%, transparent 52.25%);
+          }
+
+          .euro {
+            font-size: 30px;
+          }
+
+          .comma {
+            font-size: 24px;
+          }
+
+          .cent {
+            font-size: 26px;
+          }
+        }
+      }
+    }
+  }
+}

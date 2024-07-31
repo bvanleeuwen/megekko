@@ -1,0 +1,355 @@
+const megekkoUrl = 'https://www.megekko.nl';
+
+// hash change 
+window.onhashchange = () => {
+    scrollToCategory(window.location.hash);
+}
+if (window.location.hash) {
+    scrollToCategory(window.location.hash);
+}
+
+function scrollToCategory(link) {
+    let replace = link.replace(/[ '`]/g, "-");
+    if (link.startsWith('#')) {
+        let check = document.querySelector(`[anchorlink='${replace}']`) !== null;
+        if (check) {
+            let temp = document.querySelector(`[anchorlink='${replace}']`);
+            const yOffset = -200;
+            const y = temp.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            history.pushState("", document.title, window.location.pathname + window.location.search);
+        }
+    }
+}
+
+function makeDocument() {
+
+    document.querySelectorAll(".btn__button").forEach((button) => {
+        let btn_href = button.getAttribute('href');
+        if (btn_href.startsWith('#')) {
+            button.removeAttribute('href');
+            button.style.cursor = "pointer";
+            button.addEventListener('click', () => {
+                let temp = document.querySelector(`[anchorlink='${btn_href}']`);
+                // temp.scrollIntoView({behavior: "smooth", block: "start"});
+                const yOffset = -200;
+                const y = temp.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            })
+        }
+    });
+
+    document.querySelectorAll(".ql-editor a").forEach((a) => {
+        let a_href = a.getAttribute('href');
+        if (a_href.startsWith('#')) {
+            a.removeAttribute('href');
+            a.style.cursor = "pointer";
+            a.addEventListener('click', () => {
+                let temp2 = document.querySelector(`[anchorlink='${a_href}']`);
+                // temp2.scrollIntoView({behavior: "smooth", block: "start"});
+                const yOffset = -200;
+                const y = temp.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            })
+        }
+    });
+
+
+
+    document.querySelectorAll('a[href^="http"]:not([href*="example.com"])').forEach(anchor => anchor.setAttribute('rel', 'noopener'));
+
+
+    var priceFix = document.querySelectorAll('[data-filter=price]');
+
+    for (var i = 0; i < priceFix.length; i++) {
+        var temp = priceFix[i].textContent;
+        var splitted = temp.split(",")
+        var priceDiv = "";
+        if (splitted[1] == 0 || splitted[1] == '-') {
+            priceDiv = `<div class='euro'>${splitted[0]}<span class='pricecomma'>,</span>-</div>`
+        } else {
+            priceDiv = `<div class='euro'>${splitted[0]}<span class='pricecomma'>,</span><div class='cent'>${splitted[1]}</div></div>`
+        }
+        priceFix[i].innerHTML = priceDiv
+    }
+
+    var rows = document.querySelectorAll('el-row');
+    var cols = document.querySelectorAll('el-col');
+
+    for (var i = 0; i < rows.length; i++) {
+        rows[i].classList.add("el-row");
+    }
+    for (var i = 0; i < cols.length; i++) {
+        cols[i].classList.add("el-col-24");
+    }
+
+    let recentViews = document.querySelectorAll('[data-template="recentViewed"]');
+    let recentPopulair = document.querySelectorAll('[data-template="recentPopulair"]');
+
+
+
+    if (recentViews.length + recentPopulair.length != 0) {
+        loadLazy();
+    }
+
+    loadThumbs();
+
+}
+
+function loadLazy() {
+    let artlist = [];
+    if (typeof (Storage) !== "undefined") {
+        if (typeof (localStorage.lastvisit2) !== "undefined") {
+            inputobj = JSON.parse(localStorage.getItem("lastvisit2"));
+            inputobj.forEach(function (visitedObj) {
+                artlist.push(visitedObj.prodnum);
+            });
+        }
+    }
+
+    let recentViews = document.querySelectorAll('[data-template="recentViewed"]');
+    let recentPopulair = document.querySelectorAll('[data-template="recentPopulair"]');
+
+    let inputData = {};
+
+    inputData['function'] = "getRecentProducts";
+    inputData['data'] = {
+        'recentViewed': artlist,
+        'amount_recent': recentViews.length,
+        'amount_populair': recentPopulair.length
+    };
+
+    inputData = JSON.stringify(inputData);
+    ajax('/scripts/api/templatebuilder/classes/endPoint.php', inputData, (res) => {
+        res = JSON.parse(res);
+        let keepArray = ["naam", "url", "images_mini", "prijs", "usp", "teaser", "artikelnr"];
+        let populairObj = {};
+        let viewedObj = {};
+
+        let counter = 0;
+        for (let [key, value] of Object.entries(res.mostpopulair)) {
+            if (value in res.data) {
+                populairObj[counter] = res.data[value];
+                counter++;
+            }
+        }
+
+        counter = 0;
+        for (let [key, value] of Object.entries(res.recentviewed)) {
+            if (value in res.data) {
+                viewedObj[counter] = res.data[value];
+                counter++;
+            }
+        }
+
+        for (let [keyp, valuep] of Object.entries(populairObj)) {
+            for (let [keyp1, valuep1] of Object.entries(valuep)) {
+                if (keepArray.indexOf(keyp1) === -1) {
+                    delete populairObj[keyp][keyp1];
+                }
+            }
+        }
+
+        for (let [keyv, valuev] of Object.entries(viewedObj)) {
+            for (let [keyv1, valuev1] of Object.entries(valuev)) {
+                if (keepArray.indexOf(keyv1) === -1) {
+                    delete viewedObj[keyv][keyv1];
+                }
+            }
+        }
+        renderBlocks(populairObj, viewedObj)
+    })
+
+    /**
+     * recentviewed (artlist variable)
+     * amount_recent (count van html items)
+     * amount_populair (count van html items)
+     */
+}
+
+function ajax(url, inputData, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            callback(xhr.responseText);
+        } else if (xhr.readyState == 4 && xhr.status != 200) {
+            console.log(xhr.responseText)
+        }
+    }
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.withCredentials = true;
+    xhr.send(inputData);
+}
+
+function renderBlocks(populairObj = null, viewedObj = null) {
+
+
+    let recentViews = document.querySelectorAll('[data-template="recentViewed"]');
+    let recentPopulair = document.querySelectorAll('[data-template="recentPopulair"]');
+
+    for (let p = 0; p < recentPopulair.length; p++) {
+
+        let tempUtm = recentPopulair[p].querySelector('[data-utm]');
+
+        recentPopulair[p].querySelector('[data-title]').innerHTML = populairObj[p].naam;
+        recentPopulair[p].querySelector('[data-image]').setAttribute('src', populairObj[p].images_mini[0]);
+        recentPopulair[p].querySelector('[data-image]').setAttribute('alt', populairObj[p].naam);
+
+        // recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productName#}}", populairObj[p].naam);
+        // recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productImage#}}", populairObj[p].images_mini[0]);
+        // recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productAlt#}}", populairObj[p].naam);
+        recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productUrl#}}", populairObj[p].url + tempUtm.dataset.utm);
+
+        if (populairObj[p].teaser == 1) {
+            recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#teaserClass#}}", "teaser");
+            recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productPricer#}}", "PRIJS IS NOG NIET BEKEND");
+        } else {
+            recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productPricer#}}", fixPrice(populairObj[p].prijs));
+        }
+
+        if (populairObj[p].usp) {
+            let usps = ""
+            for (value of populairObj[p].usp) {
+                usps += "<div class='usp'>" + value + "</div>"
+            }
+            recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productUsp#}}", usps);
+        } else {
+            recentPopulair[p].innerHTML = recentPopulair[p].innerHTML.replace("{{#productUsp#}}", "")
+        }
+
+        recentPopulair[p].classList.remove('skeleton');
+    }
+
+    // for (let v = 0; v < recentViews.length; v++) {
+    for (v in viewedObj) {
+        let tempUtm = recentViews[v].querySelector('[data-utm]');
+
+        // console.log(recentViews[v].querySelector('[data-title]'));
+
+        recentViews[v].querySelector('[data-title]').innerHTML = viewedObj[v].naam;
+        recentViews[v].querySelector('[data-image]').setAttribute('src', viewedObj[v].images_mini[0]);
+        recentViews[v].querySelector('[data-image]').setAttribute('alt', viewedObj[v].naam);
+        
+        // recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productName#}}", viewedObj[v].naam);
+
+        // recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productImage#}}", viewedObj[v].images_mini[0]);
+        // recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productAlt#}}", viewedObj[v].naam);
+        recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productUrl#}}", viewedObj[v].url + tempUtm.dataset.utm);
+
+        if (viewedObj[v].teaser == 1) {
+            recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#teaserClass#}}", "teaser");
+            recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productPricer#}}", "PRIJS IS NOG NIET BEKEND");
+        } else {
+            recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productPricer#}}", fixPrice(viewedObj[v].prijs));
+        }
+
+        if (viewedObj[v].usp) {
+            let usps = ""
+            for (value of viewedObj[v].usp) {
+                usps += "<div class='usp'>" + value + "</div>"
+            }
+            recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productUsp#}}", usps);
+        } else {
+            recentViews[v].innerHTML = recentViews[v].innerHTML.replace("{{#productUsp#}}", "")
+        }
+
+        recentViews[v].classList.remove('skeleton');
+    }
+
+}
+
+function fixPrice(price) {
+    price = String(price);
+    if (price.includes('.')) {
+        price = Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, useGrouping: false }).format(price);
+
+    } else {
+        price = Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, useGrouping: false }).format(price);
+        price = price + ',-';
+    }
+    price = price.replace("€", "")
+    var splitted = price.split(",")
+    var priceDiv = "";
+    if (splitted[1] == 0 || splitted[1] == '-') {
+        priceDiv = `<div class='euro'>${splitted[0]}<span class='pricecomma'>,</span>-</div>`
+    } else {
+        priceDiv = `<div class='euro'>${splitted[0]}<span class='pricecomma'>,</span><div class='cent'>${splitted[1]}</div></div>`
+    }
+
+    return priceDiv;
+}
+
+function reveal() {
+    var reveals = document.querySelectorAll("[data-loadanimation]");
+
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("activeAnimation");
+        } else {
+            reveals[i].classList.remove("activeAnimation");
+        }
+    }
+}
+
+function thumbsUp(data) {
+    let tmpJson = {};
+    if (localStorage.getItem("thumbs") === null) {
+        localStorage.setItem('thumbs', JSON.stringify(tmpJson));
+    }
+    tmpJson = JSON.parse(localStorage.getItem('thumbs'));
+    let timestamp = Math.floor(Date.now() / 1000);
+    tmpJson[data.dataset.uuid] = {sync: timestamp, value: true};
+    localStorage.setItem('thumbs', JSON.stringify(tmpJson));
+    uidhelper('sync', null);
+    loadThumbs();
+}
+
+function thumbsDown(data) {
+    let tmpJson = {};
+    if (localStorage.getItem("thumbs") === null) {
+        localStorage.setItem('thumbs', JSON.stringify(tmpJson));
+    }
+    tmpJson = JSON.parse(localStorage.getItem('thumbs'));
+    let timestamp = Math.floor(Date.now() / 1000);
+    tmpJson[data.dataset.uuid] = {sync: timestamp, value: false};
+    localStorage.setItem('thumbs', JSON.stringify(tmpJson));
+    uidhelper('sync', null);
+    loadThumbs();
+}
+
+function loadThumbs(){
+
+    let container = document.getElementsByClassName("like_button_container");
+    if (container.length > 0) {
+        let buttonsIds = container[0].dataset.buttonids;
+
+        if (localStorage.getItem("thumbs") != null) {
+            let thumbs = JSON.parse(localStorage.getItem('thumbs'));
+            for(var key in thumbs){
+
+                if (key === buttonsIds){
+                    let value = thumbs[key];
+                    if (value.value == true) {                    
+                        document.getElementById("like_button").classList.add('active');
+                        document.getElementById("dislike_button").classList.remove('active');
+                    }else{
+                        document.getElementById("dislike_button").classList.add('active');
+                        document.getElementById("like_button").classList.remove('active');
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+
+window.addEventListener("scroll", reveal);
+
+
+makeDocument();

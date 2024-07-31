@@ -1,0 +1,29 @@
+function ntClose(e = null){
+    if(e instanceof Event){
+        if(e.target.id == 'ntBodyContainer' || e.target.className == 'ntClose'){
+            document.getElementById('ntBodyContainer').classList.remove('visible');
+        }
+    }else{
+        document.getElementById('ntBodyContainer').classList.remove('visible');
+    }
+}
+function overlayConfirm(titel, text, buttons = {}){
+    document.querySelector('#ntBodyContainer .ntContainer .ntHeader').innerText = titel;
+    document.querySelector('#ntBodyContainer .ntContainer .ntBody').innerHTML   = text;
+
+    let buttonContainer = document.querySelector('#ntBodyContainer .ntContainer .ntFooter');
+    buttonContainer.innerHTML = '';
+
+    for(i in buttons){
+        let ntBtData = buttons[i];
+        let btn         = document.createElement("div");
+        btn.className   = 'ntBtn t ' + ntBtData['bgColor'] + ' ' + ntBtData['color'];
+        if(ntBtData['onclick']){
+            btn.onclick     = ntBtData['onclick'];
+        }
+        btn.innerHTML   = ntBtData['title'];
+        buttonContainer.appendChild(btn);
+    }
+
+    document.getElementById('ntBodyContainer').classList.add('visible');
+}

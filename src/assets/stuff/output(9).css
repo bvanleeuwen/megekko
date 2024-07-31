@@ -1,0 +1,1006 @@
+@media only screen and (min-width: 501px)and (max-width: 9999px) {
+#a4d3da326-7395-4131-9bbd-cc78204454ac__component4d3da326-7395-4131-9bbd-cc78204454ac{display:flex;justify-content: center; align-items: center; font-family: ; margin-top: 0px; margin-left: 0px; margin-bottom: 0px; margin-right: 0px; padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px; height: 100%; width: 100%; border-radius: 0px; background-color: rgba(0,0,0,0); --background-color: rgba(0,0,0,0); --hover-color: rgba(0,0,0,0); background-image: none!important; background-attachment: scroll; background-position: center; background-repeat: no-repeat; background-size: auto; box-shadow : 0px 0px 0px 0px #000 ;}#a4d3da326-7395-4131-9bbd-cc78204454ac__component4bf318c6-fea6-4784-887a-f6345d94539a img { height:inherit;width:inherit;object-fit:inherit;object-position:inherit;}
+#a4d3da326-7395-4131-9bbd-cc78204454ac__component4bf318c6-fea6-4784-887a-f6345d94539a{order: 0; width: 320px; height: auto; opacity: 100%; display: block; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; background-color: rgba(0,0,0,0); --background-color: rgba(0,0,0,0); --hover-color: #8CD50B; filter: none; border-radius: 0px; box-sizing: border-box; border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-style: none; border-color: rgba(0,0,0,0); overflow: unset; object-fit: ; object-position: ; }@font-face {
+font-family: BebasNeue-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/BebasNeue-Regular.ttf');
+}
+@font-face {
+font-family: CenturyGothic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothic.TTF');
+}
+@font-face {
+font-family: CenturyGothicBd;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicBd.TTF');
+}
+@font-face {
+font-family: CenturyGothicBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicBdIt.TTF');
+}
+@font-face {
+font-family: CenturyGothicIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicIt.TTF');
+}
+@font-face {
+font-family: DINPro Black Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Black Italic.otf');
+}
+@font-face {
+font-family: DINPro Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Black.otf');
+}
+@font-face {
+font-family: DINPro Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Bold Italic.otf');
+}
+@font-face {
+font-family: DINPro Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Bold.otf');
+}
+@font-face {
+font-family: DINPro Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Light Italic.otf');
+}
+@font-face {
+font-family: DINPro Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Light.otf');
+}
+@font-face {
+font-family: DINPro Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Medium Italic.otf');
+}
+@font-face {
+font-family: DINPro Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Medium.otf');
+}
+@font-face {
+font-family: DINPro Regular Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Regular Italic.otf');
+}
+@font-face {
+font-family: DINPro Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Regular.otf');
+}
+@font-face {
+font-family: HelveticaNowDisplay;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplay.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayBold.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayHairline;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayHairline.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayMdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayMdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayMedium.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayThin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayThin.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXBd;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXBd.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXLt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXLt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowText;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowText.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextBold.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextExtraLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextMdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextMdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextMedium.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextXLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextXLtIt.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayBold.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayLight.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayMedium.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayRegular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayRegular.ttf');
+}
+@font-face {
+font-family: KeplerStd-BoldIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/KeplerStd-BoldIt.otf');
+}
+@font-face {
+font-family: KeplerStd-BoldSubh;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/KeplerStd-BoldSubh.otf');
+}
+@font-face {
+font-family: Klavika-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Bold.ttf');
+}
+@font-face {
+font-family: Klavika-BoldCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-BoldCond.otf');
+}
+@font-face {
+font-family: Klavika-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Light.ttf');
+}
+@font-face {
+font-family: Klavika-LightCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-LightCond.otf');
+}
+@font-face {
+font-family: Klavika-MediumCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-MediumCond.otf');
+}
+@font-face {
+font-family: Klavika-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Regular.ttf');
+}
+@font-face {
+font-family: Klavika-RegularCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-RegularCond.otf');
+}
+@font-face {
+font-family: Montserrat-Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Black.ttf');
+}
+@font-face {
+font-family: Montserrat-BlackItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-BlackItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Bold.ttf');
+}
+@font-face {
+font-family: Montserrat-BoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-BoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraBold.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraBoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraBoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraLight.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraLightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraLightItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Italic.ttf');
+}
+@font-face {
+font-family: Montserrat-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Light.ttf');
+}
+@font-face {
+font-family: Montserrat-LightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-LightItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Medium.ttf');
+}
+@font-face {
+font-family: Montserrat-MediumItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-MediumItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+font-family: Montserrat-SemiBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-SemiBold.ttf');
+}
+@font-face {
+font-family: Montserrat-SemiBoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-SemiBoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Thin.ttf');
+}
+@font-face {
+font-family: Montserrat-ThinItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ThinItalic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Bold Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Bold.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Light Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Light.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Medium Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Medium.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Regular Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Regular Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Regular.ttf');
+}
+@font-face {
+font-family: NVIDIASans;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans.ttf');
+}
+@font-face {
+font-family: NVIDIASans_BdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_BdIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_It;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_It.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Lt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Lt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_LtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_LtIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Md;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Md.ttf');
+}
+@font-face {
+font-family: NVIDIASans_MdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_MdIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Rg;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Rg.ttf');
+}
+@font-face {
+font-family: NotoSans_Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NotoSans_Regular.ttf');
+}
+@font-face {
+font-family: Product Sans Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Bold Italic.ttf');
+}
+@font-face {
+font-family: Product Sans Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Bold.ttf');
+}
+@font-face {
+font-family: Product Sans Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Italic.ttf');
+}
+@font-face {
+font-family: Product Sans Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Regular.ttf');
+}
+@font-face {
+font-family: Roboto-Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Black.ttf');
+}
+@font-face {
+font-family: Roboto-BlackItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-BlackItalic.ttf');
+}
+@font-face {
+font-family: Roboto-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Italic.ttf');
+}
+@font-face {
+font-family: Roboto-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Light.ttf');
+}
+@font-face {
+font-family: Roboto-Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Medium.ttf');
+}
+@font-face {
+font-family: Roboto-MediumItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-MediumItalic.ttf');
+}
+@font-face {
+font-family: Roboto-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Regular.ttf');
+}
+@font-face {
+font-family: Roboto-Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Thin.ttf');
+}
+@font-face {
+font-family: Roboto-ThinItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-ThinItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Bold.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-BoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-BoldItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Italic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Light.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-LightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-LightItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Regular.ttf');
+}
+@font-face {
+font-family: Roboto_Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto_Bold.ttf');
+}
+@font-face {
+font-family: TT Norms Pro Black Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Black Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Black.otf');
+}
+@font-face {
+font-family: TT Norms Pro Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Bold Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Bold.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBlack Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBlack Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBlack;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBlack.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBold Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBold.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraLight Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraLight Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraLight.otf');
+}
+@font-face {
+font-family: TT Norms Pro Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Light Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Light.otf');
+}
+@font-face {
+font-family: TT Norms Pro Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Medium Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Medium.otf');
+}
+@font-face {
+font-family: TT Norms Pro Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Regular.otf');
+}
+@font-face {
+font-family: TT Norms Pro Thin Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Thin Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Thin.otf');
+}
+}
+@media only screen and (min-width: 0px)and (max-width: 500px) {
+#a4d3da326-7395-4131-9bbd-cc78204454ac__component4d3da326-7395-4131-9bbd-cc78204454ac{display:flex;justify-content: center; align-items: center; font-family: ; margin-top: 0px; margin-left: 0px; margin-bottom: 0px; margin-right: 0px; padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px; height: 100%; width: 100%; border-radius: 0px; background-color: rgba(0,0,0,0); --background-color: rgba(0,0,0,0); --hover-color: rgba(0,0,0,0); background-image: none!important; background-attachment: scroll; background-position: center; background-repeat: no-repeat; background-size: auto; box-shadow : 0px 0px 0px 0px #000 ;}#a4d3da326-7395-4131-9bbd-cc78204454ac__component4d3da326-7395-4131-9bbd-cc78204454ac{display:flex;justify-content: center; align-items: center; font-family: ; margin-top: 0px; margin-left: 0px; margin-bottom: 0px; margin-right: 0px; padding-top: 0px; padding-left: 0px; padding-bottom: 0px; padding-right: 0px; height: 100%; width: 100%; border-radius: 0px; background-color: rgba(0,0,0,0); --background-color: rgba(0,0,0,0); --hover-color: rgba(0,0,0,0); background-image: none!important; background-attachment: scroll; background-position: center; background-repeat: no-repeat; background-size: auto; box-shadow : 0px 0px 0px 0px #000 ;}#a4d3da326-7395-4131-9bbd-cc78204454ac__component4bf318c6-fea6-4784-887a-f6345d94539a img { height:inherit;width:inherit;object-fit:inherit;object-position:inherit;}
+#a4d3da326-7395-4131-9bbd-cc78204454ac__component4bf318c6-fea6-4784-887a-f6345d94539a{order: 0; width: 100%; height: 100%; opacity: 100%; display: block; padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px; margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; background-color: rgba(0,0,0,0); --background-color: rgba(0,0,0,0); --hover-color: #8CD50B; filter: none; border-radius: 0px; box-sizing: border-box; border-left-width: 0px; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-style: none; border-color: rgba(0,0,0,0); overflow: unset; object-fit: ; object-position: ; }@font-face {
+font-family: BebasNeue-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/BebasNeue-Regular.ttf');
+}
+@font-face {
+font-family: CenturyGothic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothic.TTF');
+}
+@font-face {
+font-family: CenturyGothicBd;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicBd.TTF');
+}
+@font-face {
+font-family: CenturyGothicBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicBdIt.TTF');
+}
+@font-face {
+font-family: CenturyGothicIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/CenturyGothicIt.TTF');
+}
+@font-face {
+font-family: DINPro Black Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Black Italic.otf');
+}
+@font-face {
+font-family: DINPro Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Black.otf');
+}
+@font-face {
+font-family: DINPro Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Bold Italic.otf');
+}
+@font-face {
+font-family: DINPro Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Bold.otf');
+}
+@font-face {
+font-family: DINPro Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Light Italic.otf');
+}
+@font-face {
+font-family: DINPro Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Light.otf');
+}
+@font-face {
+font-family: DINPro Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Medium Italic.otf');
+}
+@font-face {
+font-family: DINPro Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Medium.otf');
+}
+@font-face {
+font-family: DINPro Regular Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Regular Italic.otf');
+}
+@font-face {
+font-family: DINPro Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/DINPro Regular.otf');
+}
+@font-face {
+font-family: HelveticaNowDisplay;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplay.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayBold.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayHairline;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayHairline.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayMdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayMdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayMedium.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayThin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayThin.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXBd;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXBd.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXLt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXLt.ttf');
+}
+@font-face {
+font-family: HelveticaNowDisplayXLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowDisplayXLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowText;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowText.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextBdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextBdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextBold.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextExtraLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextLight.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextLtIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextMdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextMdIt.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextMedium.ttf');
+}
+@font-face {
+font-family: HelveticaNowTextXLtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/HelveticaNowTextXLtIt.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayBold.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayLight.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayMedium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayMedium.ttf');
+}
+@font-face {
+font-family: IntelOneDisplayRegular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/IntelOneDisplayRegular.ttf');
+}
+@font-face {
+font-family: KeplerStd-BoldIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/KeplerStd-BoldIt.otf');
+}
+@font-face {
+font-family: KeplerStd-BoldSubh;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/KeplerStd-BoldSubh.otf');
+}
+@font-face {
+font-family: Klavika-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Bold.ttf');
+}
+@font-face {
+font-family: Klavika-BoldCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-BoldCond.otf');
+}
+@font-face {
+font-family: Klavika-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Light.ttf');
+}
+@font-face {
+font-family: Klavika-LightCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-LightCond.otf');
+}
+@font-face {
+font-family: Klavika-MediumCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-MediumCond.otf');
+}
+@font-face {
+font-family: Klavika-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-Regular.ttf');
+}
+@font-face {
+font-family: Klavika-RegularCond;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Klavika-RegularCond.otf');
+}
+@font-face {
+font-family: Montserrat-Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Black.ttf');
+}
+@font-face {
+font-family: Montserrat-BlackItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-BlackItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Bold.ttf');
+}
+@font-face {
+font-family: Montserrat-BoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-BoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraBold.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraBoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraBoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraLight.ttf');
+}
+@font-face {
+font-family: Montserrat-ExtraLightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ExtraLightItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Italic.ttf');
+}
+@font-face {
+font-family: Montserrat-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Light.ttf');
+}
+@font-face {
+font-family: Montserrat-LightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-LightItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Medium.ttf');
+}
+@font-face {
+font-family: Montserrat-MediumItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-MediumItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Regular.ttf');
+}
+@font-face {
+font-family: Montserrat-SemiBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-SemiBold.ttf');
+}
+@font-face {
+font-family: Montserrat-SemiBoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-SemiBoldItalic.ttf');
+}
+@font-face {
+font-family: Montserrat-Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-Thin.ttf');
+}
+@font-face {
+font-family: Montserrat-ThinItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Montserrat-ThinItalic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Bold Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Bold.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Light Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Light.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Medium Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Medium.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Regular Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Regular Italic.ttf');
+}
+@font-face {
+font-family: NVIDIA Sans Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIA Sans Regular.ttf');
+}
+@font-face {
+font-family: NVIDIASans;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans.ttf');
+}
+@font-face {
+font-family: NVIDIASans_BdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_BdIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_It;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_It.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Lt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Lt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_LtIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_LtIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Md;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Md.ttf');
+}
+@font-face {
+font-family: NVIDIASans_MdIt;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_MdIt.ttf');
+}
+@font-face {
+font-family: NVIDIASans_Rg;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NVIDIASans_Rg.ttf');
+}
+@font-face {
+font-family: NotoSans_Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/NotoSans_Regular.ttf');
+}
+@font-face {
+font-family: Product Sans Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Bold Italic.ttf');
+}
+@font-face {
+font-family: Product Sans Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Bold.ttf');
+}
+@font-face {
+font-family: Product Sans Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Italic.ttf');
+}
+@font-face {
+font-family: Product Sans Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Product Sans Regular.ttf');
+}
+@font-face {
+font-family: Roboto-Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Black.ttf');
+}
+@font-face {
+font-family: Roboto-BlackItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-BlackItalic.ttf');
+}
+@font-face {
+font-family: Roboto-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Italic.ttf');
+}
+@font-face {
+font-family: Roboto-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Light.ttf');
+}
+@font-face {
+font-family: Roboto-Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Medium.ttf');
+}
+@font-face {
+font-family: Roboto-MediumItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-MediumItalic.ttf');
+}
+@font-face {
+font-family: Roboto-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Regular.ttf');
+}
+@font-face {
+font-family: Roboto-Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-Thin.ttf');
+}
+@font-face {
+font-family: Roboto-ThinItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto-ThinItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Bold.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-BoldItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-BoldItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Italic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Light.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-LightItalic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-LightItalic.ttf');
+}
+@font-face {
+font-family: RobotoCondensed-Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/RobotoCondensed-Regular.ttf');
+}
+@font-face {
+font-family: Roboto_Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/Roboto_Bold.ttf');
+}
+@font-face {
+font-family: TT Norms Pro Black Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Black Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Black;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Black.otf');
+}
+@font-face {
+font-family: TT Norms Pro Bold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Bold Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Bold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Bold.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBlack Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBlack Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBlack;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBlack.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBold Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBold Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraBold;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraBold.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraLight Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraLight Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro ExtraLight;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro ExtraLight.otf');
+}
+@font-face {
+font-family: TT Norms Pro Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Light Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Light Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Light;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Light.otf');
+}
+@font-face {
+font-family: TT Norms Pro Medium Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Medium Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Medium;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Medium.otf');
+}
+@font-face {
+font-family: TT Norms Pro Regular;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Regular.otf');
+}
+@font-face {
+font-family: TT Norms Pro Thin Italic;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Thin Italic.otf');
+}
+@font-face {
+font-family: TT Norms Pro Thin;
+src: url('/uploads/templatebuilder/process/4d3da326-7395-4131-9bbd-cc78204454ac/fonts/TT Norms Pro Thin.otf');
+}
+}

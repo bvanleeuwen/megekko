@@ -1,0 +1,43 @@
+section {
+  position: relative;
+}
+
+.carousel {
+  overflow-x: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+.carousel .carouselOverflow {
+  display: flex;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.controls {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.controls a {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.controls a:hover {
+  cursor: pointer;
+}
+.controls a.active {
+  background: #8CD50B;
+}
+
+/*# sourceMappingURL=carousel.css.map */
